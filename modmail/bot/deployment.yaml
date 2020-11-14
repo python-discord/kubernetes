@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: modmail-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: modmail-bot
+  template:
+    metadata:
+      labels:
+        app: modmail-bot
+    spec:
+      containers:
+        - name: modmail-bot
+          image: kyb3rr/modmail:latest
+          imagePullPolicy: "Always"
+          envFrom:
+            - secretRef:
+                name: modmail
