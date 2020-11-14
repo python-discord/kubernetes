@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: modmail-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: modmail-web
+  template:
+    metadata:
+      labels:
+        app: modmail-web
+    spec:
+      containers:
+        - name: modmail-web
+          image: kyb3rr/logviewer:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: modmail

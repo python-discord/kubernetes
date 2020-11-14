@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: modmail-web
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`modmail.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: modmail-web
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: modmail.pythondiscord.com
