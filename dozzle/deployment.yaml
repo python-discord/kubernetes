@@ -23,8 +23,8 @@ spec:
             - name: dockersock
               mountPath: "/var/run/docker.sock"
 
+      # Get access to the "docker" host group
       securityContext:
-        # Get access to the "docker" host group
         fsGroup: 412
 
       volumes:
