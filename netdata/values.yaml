@@ -1,0 +1,18 @@
+ingress:
+  enabled: false
+
+parent:
+  env: 
+    DO_NOT_TRACK: 1
+
+  database:
+    persistence: true
+    storageclass: "linode-block-storage-retain"
+    volumesize: 10Gi
+
+  alarms:
+    persistence: false
+
+child:
+  env:
+    DO_NOT_TRACK: 1
