@@ -18,7 +18,7 @@ spec:
           imagePullPolicy: "Always"
           ports:
             - name: dozzle
-              containerPort: 8888
+              containerPort: 8080
           volumeMounts:
             - name: dockersock
               mountPath: "/var/run/docker.sock"
