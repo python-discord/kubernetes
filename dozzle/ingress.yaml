@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dozzle
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`logs.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: dozzle
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: logs.pythondiscord.com
