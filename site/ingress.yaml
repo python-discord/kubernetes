@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: site
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`pythondiscord.com`) || Host(`api.pythondiscord.com`) || Host(`staff.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: site
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: pythondiscord.com
+    - main: api.pythondiscord.com
+    - main: staff.pythondiscord.com
