@@ -11,6 +11,14 @@ deployment:
         - name: data
           mountPath: /data
 
+logs:
+  general:
+    # Available levels: DEBUG, PANIC, FATAL, ERROR, WARN, and INFO.
+    level: INFO
+  access:
+    # To enable access logs
+    enabled: false
+
 ports:
   websecure:
     tls:
