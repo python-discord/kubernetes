@@ -17,4 +17,4 @@ for file in potential_manifests:
             # File is likely a k8s manifests
             likely_manifests.append(file)
 
-print("::set-output name=files::\n".join(likely_manifests))
+print("::set-output name=files::" + "%0A".join(likely_manifests))
