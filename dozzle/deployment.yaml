@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dozzle
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dozzle
+  template:
+    metadata:
+      labels:
+        app: dozzle
+    spec:
+      containers:
+        - name: dozzle
+          image: amir20/dozzle:latest
+          imagePullPolicy: "Always"
+          ports:
+            - name: dozzle
+              containerPort: 8888
+          volumeMounts:
+            - name: dockersock
+              mountPath: "/var/run/docker.sock"
+
+      securityContext:
+        # Get access to the "docker" host group
+        fsGroup: 412
+
+      volumes:
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock
