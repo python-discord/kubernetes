@@ -28,8 +28,8 @@ jobs:
           echo $manifests
 
           echo "::set-output name=manifests::$manifests"
-        id: manifest_files
+        id: manifest-files
 
       - uses: azure/k8s-lint@v1
         with:
-          manifests: ${{ steps.manifest_files.output.manifests }}
+          manifests: ${{ steps.manifest-files.output.manifests }}
