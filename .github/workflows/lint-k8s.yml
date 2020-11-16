@@ -19,9 +19,17 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Get list of files
-        run: python find_manifests.py
+        run: |
+          manifests=$(python find_manifests.py)
+          manifests="${manifests//'%'/'%25'}"
+          manifests="${manifests//$'\n'/'%0A'}"
+          manifests="${manifests//$'\r'/'%0D'}"
+
+          echo $manifests
+
+          echo "::set-output name=manifests::$manifests"
         id: manifest_files
 
       - uses: azure/k8s-lint@v1
         with:
-          manifests: ${{ steps.manifest_files.output.files }}
+          manifests: ${{ steps.manifest_files.output.manifests }}
