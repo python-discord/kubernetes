@@ -30,6 +30,13 @@ jobs:
           echo "::set-output name=manifests::$manifests"
         id: manifest-files
 
+      - name: Authenticate with Kubernetes
+        uses: azure/k8s-set-context@v1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
       - uses: azure/k8s-lint@v1
         with:
+          lintType: dryrun
           manifests: ${{ steps.manifest-files.outputs.manifests }}
