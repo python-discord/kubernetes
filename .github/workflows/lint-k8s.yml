@@ -1,0 +1,27 @@
+name: Lint Kubernetes manifests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Lint manifests
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get list of files
+        run: python find_manifests.py
+        id: manifest_files
+
+      - uses: azure/k8s-lint@v1
+        with:
+          manifests: ${{ steps.manifest_files.output.files }}
