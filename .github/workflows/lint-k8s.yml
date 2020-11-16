@@ -32,4 +32,4 @@ jobs:
 
       - uses: azure/k8s-lint@v1
         with:
-          manifests: ${{ steps.manifest-files.output.manifests }}
+          manifests: "${{ steps.manifest-files.output.manifests }}"
