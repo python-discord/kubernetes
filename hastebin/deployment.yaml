@@ -23,7 +23,11 @@ spec:
           volumeMounts:
             - name: hastebin-init-volume
               mountPath: /init
-
+          envFrom:
+            - secretRef:
+                name: hastebin-redis-password
+            - configMapRef:
+                name: hastebin-defaults
       volumes:
         - name: hastebin-init-volume
           configMap:
