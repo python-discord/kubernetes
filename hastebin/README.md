@@ -1,8 +1,10 @@
-# paste.pythondiscord.com
+# Hastebin
 These manifests provision an instance of the hastebin service used on paste.pythondiscord.com.
 
 ## How to deploy this service
-- Edit the `init.sh` to specify the storage type, host and password
-- Run `kubectl create configmap hastebin-init --from-file=init.sh` to create the required **ConfigMap**
-- Revert the changes on `init.sh` - **We don't want to commit anything sensitive!**
-- Run `kubectl apply -f .`
+- Check the defaults in `defaults-configmap.yaml` match what you want.
+- Create a secret containing your Redis password using:
+```bash
+$ kubectl create secret generic hastebin-redis-password --from-literal=STORAGE_PASSWORD=<redis password here>
+```
+- Run `kubectl apply -f .` inside the hastebin folder to provision the ConfigMap, Deployment, Service and Ingress.
