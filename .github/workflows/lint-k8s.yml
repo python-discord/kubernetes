@@ -1,0 +1,42 @@
+name: Lint Kubernetes manifests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  lint:
+    name: Lint manifests
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get list of files
+        run: |
+          manifests=$(python find_manifests.py)
+          manifests="${manifests//'%'/'%25'}"
+          manifests="${manifests//$'\n'/'%0A'}"
+          manifests="${manifests//$'\r'/'%0D'}"
+
+          echo $manifests
+
+          echo "::set-output name=manifests::$manifests"
+        id: manifest-files
+
+      - name: Authenticate with Kubernetes
+        uses: azure/k8s-set-context@v1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
+      - uses: jb3/k8s-lint@master
+        with:
+          lintType: dryrun
+          manifests: ${{ steps.manifest-files.outputs.manifests }}
