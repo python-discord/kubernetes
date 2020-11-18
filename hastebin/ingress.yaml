@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: hastebin
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`paste.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: hastebin
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: paste.pythondiscord.com
