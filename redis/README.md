@@ -1,12 +1,6 @@
 # Python Discord Redis
 This folder contains the configuration for Python Discord's Redis instance.
 
-The order of deployment is as follows:
-- Create ConfigMap (see below)
-- Volume
-- Deployment
-- Service
-
 ## ConfigMap
 **We'll need to create a ConfigMap for this service, which will hold the `redis.conf` configuration.**
 
