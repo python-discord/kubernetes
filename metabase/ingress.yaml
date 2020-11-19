@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: metabase
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`metabase.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: metabase
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: metabase.pythondiscord.com
