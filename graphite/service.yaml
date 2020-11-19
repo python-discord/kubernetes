@@ -8,6 +8,7 @@ spec:
       name: nginx
     - port: 8125
       name: statsd
+      protocol: UDP
     - port: 8126
       name: statsd-admin
   selector:
