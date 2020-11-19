@@ -1,9 +1,7 @@
 # Metabase
-
 These manifests provision an instance of Metabase, our database analysis tool.
 
 ## Secrets
-
 A single secret of name `metabase-env` is used with the following values:
 
 | Environment  | Description                               |
