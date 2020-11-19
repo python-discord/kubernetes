@@ -1,19 +1,8 @@
 # Kubernetes Dashboard
 We use an instance of the Kubernetes dashboard to help manage our Kubernetes cluster.
 
-First, add the Helm repo we will be using:
-```
-$ helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
-```
+Before starting, ensure that you have deployed the metrics server located in the `metrics-server` folder of this repository.
 
-Next, create a deployment of the dashboard:
-```
-$ helm install -f values.yaml dashboard kubernetes-dashboard/kubernetes-dashboard --namespace kube-system
-```
+Once this has been deployed use `kubectl apply -f .` in this directory to create the necessary resources. If you receive an error about a namespace not being defined then run the command again.
 
-Then, proxy the dashboard locally using:
-```
-$ kubectl -n kube-system port-forward deployment/dashboard-kubernetes-dashboard 8443:8443
-```
-
-Access the dashboard through https://localhost:8443/. You will be asked for a Kubernetes Configuration file to authenticate with.
+To access the dashboard run `kubectl proxy` and visit http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/error?namespace=default (worth bookmarking!)
