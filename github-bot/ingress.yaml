@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: github-bot
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`github-bot.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: github-bot
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: github-bot.pythondiscord.com
