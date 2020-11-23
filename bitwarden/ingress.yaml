@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: bitwarden
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`bitwarden.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: bitwarden
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: bitwarden.pythondiscord.com
