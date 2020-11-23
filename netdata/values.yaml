@@ -1,4 +1,5 @@
 ingress:
+  # Use our own ingress manifest, rather than the one provided
   enabled: false
 
 parent:

@@ -2,6 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: netdata
+  namespace: kube-system
 spec:
   entryPoints:
     - websecure
