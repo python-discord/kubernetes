@@ -5,12 +5,16 @@ metadata:
 data:
   # Set storage method
   STORAGE_TYPE: "redis"
+
   # Set storage host
   STORAGE_HOST: "redis.default.svc.cluster.local"
+
   # Set port of storage host
   STORAGE_PORT: "6379"
+
   # Expiration of documents in seconds
   STORAGE_EXPIRE_SECONDS: "2629746" # 1 month
+
   # Select the Redis DB to use
   STORAGE_DB: "2"
 
@@ -22,9 +26,8 @@ data:
   LOGGING_TYPE: "Console"
   LOGGING_COLORIZE: "true"
 
-  # Host address
+  # Host address and port
   HOST: "0.0.0.0"
-  # Host port
   PORT: "7777"
 
   # Length of keys
@@ -32,6 +35,7 @@ data:
 
   # Max length of static asset caching
   STATIC_MAX_AGE: "86400"
+
   # Compress assets
   RECOMPRESS_STATIC_ASSETS: "true"
 
