@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hastebin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hastebin
+  template:
+    metadata:
+      labels:
+        app: hastebin
+    spec:
+      containers:
+        - name: hastebin
+          # Same image as https://github.com/seejohnrun/haste-server/blob/master/Dockerfile
+          image: node:14.8.0-stretch
+          command: [ "bash", "/init/init.sh" ]
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 7777
+          volumeMounts:
+            - name: hastebin-init-volume
+              mountPath: /init
+          envFrom:
+            - secretRef:
+                name: hastebin-redis-password
+            - configMapRef:
+                name: hastebin-defaults
+      volumes:
+        - name: hastebin-init-volume
+          configMap:
+            name: hastebin-init

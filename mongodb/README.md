@@ -1,18 +1,10 @@
 # Python Discord MongoDB
-
 This folder contains the configuration for Python Discord's MongoDB instance.
 
-The order of deployment is as follows:
-- Volume
-- Deployment
-- Service
-
 ## Volume
-
 A 10Gi volume is provisioned on the Linode Block Storage (Retain) storage class.
 
 ## Deployment
-
 The deployment will pull the `mongo:latest` image from DockerHub.
 
 It will mount the created volume at `/data/db`.
@@ -20,5 +12,4 @@ It will mount the created volume at `/data/db`.
 It will expose port `27017` to connect to MongoDB.
 
 ## Service
-
 A service called `mongodb` will be created to give the deployment a cluster local DNS record of `mongodb.default.svc.cluster.local`.
