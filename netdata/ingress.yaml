@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: netdata
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`netdata.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: netdata
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: netdata.pythondiscord.com
