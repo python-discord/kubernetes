@@ -6,4 +6,4 @@ spec:
   ports:
     - port: 80
   selector:
-    app: public-stats
+    app: bitwarden
