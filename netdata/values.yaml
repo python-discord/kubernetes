@@ -2,18 +2,26 @@ ingress:
   # Use our own ingress manifest, rather than the one provided
   enabled: false
 
+# Configuration that applies to the parent pod
 parent:
-  env: 
+  # Environment variables
+  env:
+    # Do not send anonymous analytics data
     DO_NOT_TRACK: 1
 
   database:
+    # Provision a persistent volume for netdata's database
     persistence: true
     storageclass: "linode-block-storage-retain"
     volumesize: 10Gi
 
   alarms:
+    # Healthchecks do not need to be persistent
     persistence: false
 
+# Configuration that applies to any child pods
 child:
+  # Environment variables
   env:
+    # Do not send anonymous analytics data
     DO_NOT_TRACK: 1
