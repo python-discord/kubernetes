@@ -6,7 +6,8 @@ data:
   # Domain to access bitwarden by
   DOMAIN: "https://bitwarden.pythondiscord.com"
 
-  # Security through obscurity!
+  # Password hint must be sent to an email when this is false.
+  # When it's true, it'll be shown right on the page.
   SHOW_PASSWORD_HINT: "false"
 
   # Admins only, please!

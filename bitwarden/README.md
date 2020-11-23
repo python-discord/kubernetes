@@ -5,7 +5,7 @@ Our internal password manager, used by the admins to share passwords for our ser
 To deploy this, first set up the secrets (see below) and then run `kubectl apply -f .` in this folder.
 
 ## Secrets
-This deployment expects a few secrets to exist in a secret called `bitwarden-secrets`.
+This deployment expects a few secrets to exist in a secret called `bitwarden-secret-env`.
 
 
 | Environment           | Description                               |
