@@ -1,0 +1,28 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: github-redirect
+spec:
+  redirectRegex:
+    regex: ^https://git.pythondiscord.com/(.*)
+    replacement: http://github.com/python-discord/${1}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: github-redirect
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`git.pythondiscord.com`)
+    kind: Rule
+    services:
+      - name: site
+        port: 80
+    middlewares:
+      - name: github-redirect
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: git.pythondiscord.com
