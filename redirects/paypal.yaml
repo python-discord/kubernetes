@@ -1,0 +1,28 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: paypal-redirect
+spec:
+  redirectRegex:
+    regex: ^https://paypal.pythondiscord.com/(.*)
+    replacement: https://www.paypal.com/paypalme/pythondiscord
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: paypal-redirect
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`paypal.pythondiscord.com`)
+    kind: Rule
+    services:
+      - name: site
+        port: 80
+    middlewares:
+      - name: paypal-redirect
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: paypal.pythondiscord.com
