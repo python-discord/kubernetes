@@ -19,3 +19,5 @@ spec:
         envFrom:
         - secretRef:
             name: bot-env
+        - secretRef:
+            name: sentry-env
