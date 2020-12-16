@@ -1,0 +1,28 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: sentry-redirect
+spec:
+  redirectRegex:
+    regex: ^https://sentry.pythondiscord.com/(.*)
+    replacement: https://sentry.io/organizations/python-discord/issues/
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sentry-redirect
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`sentry.pythondiscord.com`)
+    kind: Rule
+    services:
+      - name: site
+        port: 80
+    middlewares:
+      - name: sentry-redirect
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: sentry.pythondiscord.com
