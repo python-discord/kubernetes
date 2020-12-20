@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: statping
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`status.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: statping
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: status.pythondiscord.com

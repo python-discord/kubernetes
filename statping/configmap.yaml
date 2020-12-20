@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: statping-defaults
+data:
+  DB_CONN: "postgres"
+  DB_HOST: "postgres.default.svc.cluster.local"
+  DB_USER: "statping"
+  DB_PORT: "5432"
+  DB_DATABASE: "statping"
+  POSTGRES_SSLMODE: "disable"
+  MAX_OPEN_CONN: "10"
+  MAX_IDLE_CONN: "10"
+
+  NAME: "Python Discord"
+  DESCRIPTION: "Status of Python Discord services"
+  DOMAIN: "status.pythondiscord.com"
+  ADMIN_USER: "admin"
+  SAMPLE_DATA: "false"
