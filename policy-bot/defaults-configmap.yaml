@@ -46,5 +46,5 @@ data:
       # The path within repositories to find the policy.yml file
       policy_path: .github/review-policy.yml
       # The context prefix for status checks created by the bot
-      status_check_context: "Core Dev approval"
+      status_check_context: "Review requirements"
 
