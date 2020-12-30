@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redash
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redash
+  template:
+    metadata:
+      labels:
+        app: redash
+    spec:
+      containers:
+        - name: server
+          image: redash/redash:preview
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: REDASH_WEB_WORKERS
+              value: "1"
+          envFrom:
+            - secretRef:
+                name: redash-secrets
+          args: ["server"]
+        - name: scheduler
+          image: redash/redash:preview
+          imagePullPolicy: Always
+          env:
+            - name: WORKERS_COUNT
+              value: "1"
+          envFrom:
+            - secretRef:
+                name: redash-secrets
+          args: ["scheduler"]
+        - name: worker
+          image: redash/redash:preview
+          imagePullPolicy: Always
+          env:
+            - name: WORKERS_COUNT
+              value: "2"
+          envFrom:
+            - secretRef:
+                name: redash-secrets
+          args: ["worker"]
