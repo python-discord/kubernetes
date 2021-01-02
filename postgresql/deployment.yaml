@@ -4,6 +4,8 @@ metadata:
   name: postgres
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: postgres
@@ -22,11 +24,17 @@ spec:
           envFrom:
             - secretRef:
                 name: postgres-env
+          args: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
           volumeMounts:
             - name: postgres-data
               mountPath: /var/lib/postgresql/data
               subPath: pgdata
+            - name: postgres-config
+              mountPath: /etc/postgresql
       volumes:
         - name: postgres-data
           persistentVolumeClaim:
             claimName: postgres-storage
+        - name: postgres-config
+          configMap:
+            name: postgres-config
