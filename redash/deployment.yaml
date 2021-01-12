@@ -40,7 +40,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: WORKERS_COUNT
-              value: "2"
+              value: "1"
           envFrom:
             - secretRef:
                 name: redash-secrets
