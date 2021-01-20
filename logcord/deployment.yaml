@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logcord
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logcord
+  template:
+    metadata:
+      labels:
+        app: logcord
+    spec:
+      containers:
+        - name: logcord
+          image: ghcr.io/python-discord/logcord:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: logcord-config-env
+            - secretRef:
+                name: logcord-secret-env
