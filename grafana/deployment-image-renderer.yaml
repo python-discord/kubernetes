@@ -15,6 +15,13 @@ spec:
       containers:
         - name: grafana-image-renderer
           image: grafana/grafana-image-renderer:latest
+          resources:
+            requests:
+              cpu: 1m
+              memory: 50Mi
+            limits:
+              cpu: 50m
+              memory: 200Mi
           imagePullPolicy: Always
           ports:
             - containerPort: 8081
