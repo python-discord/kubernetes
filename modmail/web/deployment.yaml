@@ -16,6 +16,13 @@ spec:
         - name: modmail-web
           image: kyb3rr/logviewer:latest
           imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 3m
+              memory: 25Mi
+            limits:
+              cpu: 3m
+              memory: 40Mi
           ports:
             - containerPort: 8000
           envFrom:
