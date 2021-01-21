@@ -21,8 +21,8 @@ spec:
               cpu: 3m
               memory: 25Mi
             limits:
-              cpu: 3m
-              memory: 40Mi
+              cpu: 50m
+              memory: 100Mi
           ports:
             - containerPort: 8000
           envFrom:
