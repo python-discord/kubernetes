@@ -16,6 +16,13 @@ spec:
         - name: policy-bot
           image: palantirtechnologies/policy-bot:latest
           imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 1m
+              memory: 25Mi
+            limits:
+              cpu: 5m
+              memory: 50Mi
           ports:
             - containerPort: 8080
           volumeMounts:
