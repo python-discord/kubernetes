@@ -24,6 +24,13 @@ spec:
         - name: postgres-exporter
           image: wrouesnel/postgres_exporter:latest
           imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 5m
+              memory: 20Mi
+            limits:
+              cpu: 20m
+              memory: 50Mi
           ports:
             - containerPort: 9187
           envFrom:
