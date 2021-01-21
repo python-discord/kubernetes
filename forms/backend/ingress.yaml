@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: forms-backend
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`forms-api.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: forms-backend
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: api.forms.pythondiscord.com
