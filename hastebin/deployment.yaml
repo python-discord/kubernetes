@@ -18,6 +18,13 @@ spec:
           image: node:14.8.0-stretch
           command: [ "bash", "/init/init.sh" ]
           imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 5m
+              memory: 50Mi
+            limits:
+              cpu: 7m
+              memory: 75Mi
           ports:
             - containerPort: 7777
           volumeMounts:
