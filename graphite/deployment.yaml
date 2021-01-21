@@ -16,6 +16,13 @@ spec:
         - name: graphite
           image: graphiteapp/graphite-statsd:latest
           imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 200m
+              memory: 500Mi
+            limits:
+              cpu: 500m
+              memory: 750Mi
           ports:
             - containerPort: 80
             - containerPort: 8125
