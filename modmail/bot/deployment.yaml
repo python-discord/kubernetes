@@ -17,10 +17,10 @@ spec:
           image: kyb3rr/modmail:latest
           resources:
             requests:
-              cpu: 10m
+              cpu: 50m
               memory: 200Mi
             limits:
-              cpu: 20m
+              cpu: 100m
               memory: 300Mi
           imagePullPolicy: "Always"
           envFrom:
