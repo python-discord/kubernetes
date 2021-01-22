@@ -21,8 +21,8 @@ spec:
             cpu: 400m
             memory: 400Mi
           limits:
-            cpu: 500m
-            memory: 500Mi
+            cpu: 1000m
+            memory: 600Mi
         envFrom:
         - secretRef:
             name: bot-env
