@@ -19,10 +19,10 @@ spec:
         resources:
           requests:
             cpu: 25m
-            memory: 500Mi
+            memory: 400Mi
           limits:
-            cpu: 200m
-            memory: 750Mi
+            cpu: 300m
+            memory: 500Mi
         envFrom:
         - secretRef:
             name: bot-env
