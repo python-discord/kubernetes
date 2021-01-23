@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: logcord
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`logcord.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: logcord
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: logcord.pythondiscord.com
