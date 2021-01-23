@@ -16,6 +16,13 @@ spec:
       - name: bot
         image: ghcr.io/python-discord/bot:latest
         imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 400m
+            memory: 400Mi
+          limits:
+            cpu: 1000m
+            memory: 600Mi
         envFrom:
         - secretRef:
             name: bot-env

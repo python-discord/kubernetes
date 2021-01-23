@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`grafana.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: grafana
+      port: 3000
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: grafana.pythondiscord.com
