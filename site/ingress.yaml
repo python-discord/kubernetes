@@ -19,7 +19,7 @@ spec:
     services:
     - name: site
       port: 80
-  - match: Hostt(`staff.pythondiscord.com`)
+  - match: Host(`staff.pythondiscord.com`)
     kind: Rule
     services:
     - name: site
