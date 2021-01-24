@@ -1,0 +1,27 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: logcord-cloudflare-access
+spec:
+  forwardAuth:
+    address: http://traefik-auth-cloudflare.default.svc.cluster.local:80/auth/201fc817b9aecd63d78be3bd2d946b928ca540185bf402bce19e6eaa1a12df55
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: logcord
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`logcord.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: logcord
+      port: 80
+    middlewares:
+      - name: logcord-cloudflare-access
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: logcord.pythondiscord.com

@@ -16,6 +16,13 @@ spec:
         - name: bitwarden
           image: bitwardenrs/server-postgresql:latest
           imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 1m
+              memory: 50Mi
+            limits:
+              cpu: 50m
+              memory: 100Mi
           ports:
             - containerPort: 80
           envFrom:

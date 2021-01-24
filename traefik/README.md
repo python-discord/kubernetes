@@ -16,3 +16,9 @@ kubectl port-forward -n kube-system $(kubectl get pods -n kube-system --selector
 ```
 
 Then visit http://127.0.0.1:9000/dashboard/
+
+## Traefik Auth Cloudflare
+
+We also use a microservice to validate that requests to services behind Cloudflare access have passed through Cloudflare access.
+
+To deploy this deploy the `traefik-auth-cloudflare.yaml` file.

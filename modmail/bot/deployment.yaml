@@ -15,6 +15,13 @@ spec:
       containers:
         - name: modmail-bot
           image: kyb3rr/modmail:latest
+          resources:
+            requests:
+              cpu: 50m
+              memory: 250Mi
+            limits:
+              cpu: 100m
+              memory: 300Mi
           imagePullPolicy: "Always"
           envFrom:
             - secretRef:

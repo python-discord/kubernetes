@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik-auth-cloudflare
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik-auth-cloudflare
+  template:
+    metadata:
+      labels:
+        app: traefik-auth-cloudflare
+    spec:
+      containers:
+        - name: traefik-auth-cloudflare
+          image: akohlbecker/traefik-auth-cloudflare:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 1m
+              memory: 25Mi
+            limits:
+              cpu: 5m
+              memory: 50Mi
+          ports:
+            - containerPort: 80
+          args: ["--auth-domain", "https://pydis.cloudflareaccess.com"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-auth-cloudflare
+spec:
+  selector:
+    app: traefik-auth-cloudflare
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

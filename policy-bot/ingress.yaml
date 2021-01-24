@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: policy-bot
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`policy-bot.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: policy-bot
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: policy-bot.pythondiscord.com

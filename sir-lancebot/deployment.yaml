@@ -16,6 +16,15 @@ spec:
       - name: sir-lancebot
         image: ghcr.io/python-discord/sir-lancebot:latest
         imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 5m
+            memory: 50Mi
+          limits:
+            cpu: 20m
+            memory: 100Mi
         envFrom:
         - secretRef:
             name: sir-lancebot-env
+        - secretRef:
+            name: redis-credentials
