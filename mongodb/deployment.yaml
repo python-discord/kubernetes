@@ -28,6 +28,9 @@ spec:
           volumeMounts:
             - mountPath: /data/db
               name: mongodb-volume
+          envFrom:
+          - secretRef:
+              name: mongo-credentials
       volumes:
         - name: mongodb-volume
           persistentVolumeClaim:
