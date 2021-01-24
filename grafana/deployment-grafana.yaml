@@ -20,10 +20,10 @@ spec:
             - containerPort: 3000
           resources:
             requests:
-             cpu: 50m
+             cpu: 200m
              memory: 100Mi
             limits:
-              cpu: 100m
+              cpu: 300m
               memory: 250Mi
           envFrom:
             - configMapRef:
