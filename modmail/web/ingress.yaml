@@ -1,4 +1,12 @@
 apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: modmail-cloudflare-access
+spec:
+  forwardAuth:
+    address: http://traefik-auth-cloudflare.default.svc.cluster.local:80/auth/b8000c972fef80771ce8307a21a7856f56706f64440ecc8c89611d8a58629117
+---
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: modmail-web
@@ -11,6 +19,8 @@ spec:
     services:
     - name: modmail-web
       port: 80
+    middlewares:
+      - name: modmail-cloudflare-access
   tls:
     certResolver: cfresolver
     domains:
