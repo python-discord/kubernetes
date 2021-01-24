@@ -1,0 +1,26 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: blackbox
+spec:
+  schedule: "@daily"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: blackbox
+            image: lemonsaurus/blackbox
+            imagePullPolicy: Always
+            envFrom:
+              - secretRef:
+                  name: postgres-env
+              - secretRef:
+                  name: redis-credentials
+              - secretRef:
+                  name: mongo-credentials
+              - secretRef:
+                  name: s3-credentials
+              - secretRef:
+                  name: discord-webhooks
+          restartPolicy: Never
