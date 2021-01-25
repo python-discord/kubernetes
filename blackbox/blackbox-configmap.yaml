@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: blackbox-config
 data:
-  config.yaml: |
+  blackbox.yaml: |
     databases:
       - mongodb://{{ MONGO_INITDB_ROOT_USERNAME }}:{{ MONGO_INITDB_ROOT_PASSWORD }}@postgres.default.svc.cluster.local:5432
       - postgres://{{ POSTGRES_USER }}:{{ POSTGRES_PASSWORD }}@mongodb.default.svc.cluster.local:27017

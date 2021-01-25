@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blackbox-env
+data:
+  # Set the config file location
+  BLACKBOX_CONFIG_PATH: "/blackbox/config_file/blackbox.yaml"
