@@ -54,10 +54,10 @@ spec:
           resources:
             requests:
               cpu: 200m
-              memory: 300Mi
+              memory: 400Mi
             limits:
               cpu: 400m
-              memory: 400Mi
+              memory: 500Mi
           imagePullPolicy: Always
           env:
             - name: WORKERS_COUNT
