@@ -26,3 +26,5 @@ spec:
         envFrom:
         - secretRef:
             name: sir-lancebot-env
+        - secretRef:
+            name: redis-credentials

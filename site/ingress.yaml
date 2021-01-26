@@ -1,4 +1,12 @@
 apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: site-cloudflare-access
+spec:
+  forwardAuth:
+    address: http://traefik-auth-cloudflare.default.svc.cluster.local:80/auth/a76e7078daa7c9ed400fc3040ff2daa22178aceb6abb8da6c9edba11da8c5b30
+---
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: site
@@ -6,11 +14,18 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`pythondiscord.com`) || Host(`api.pythondiscord.com`) || Host(`staff.pythondiscord.com`)
+  - match: Host(`pythondiscord.com`) || Host(`api.pythondiscord.com`)
     kind: Rule
     services:
     - name: site
       port: 80
+  - match: Host(`staff.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: site
+      port: 80
+    middlewares:
+    - name: site-cloudflare-access
   tls:
     certResolver: cfresolver
     domains:

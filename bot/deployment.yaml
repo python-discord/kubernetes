@@ -21,10 +21,12 @@ spec:
             cpu: 400m
             memory: 400Mi
           limits:
-            cpu: 1000m
-            memory: 600Mi
+            cpu: 500m
+            memory: 500Mi
         envFrom:
         - secretRef:
             name: bot-env
         - secretRef:
             name: sentry-env
+        - secretRef:
+            name: redis-credentials
