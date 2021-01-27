@@ -35,6 +35,8 @@ additionalArguments:
   - "--certificatesresolvers.cfresolver.acme.email=letsencrypt@pythondiscord.com"
   - "--certificatesresolvers.cfresolver.acme.storage=/certs/acme.json"
   - "--providers.kubernetesingress=true"
+  - "--api.dashboard=true"
+  - "--metrics.prometheus=true"
 
 envFrom:
   - secretRef:
