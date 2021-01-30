@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blackbox-config
+data:
+  blackbox.yaml: |
+    databases:
+      - mongodb://{{ MONGO_INITDB_ROOT_USERNAME }}:{{ MONGO_INITDB_ROOT_PASSWORD }}@mongodb.default.svc.cluster.local:27017
+      - postgres://{{ POSTGRES_USER }}:{{ POSTGRES_PASSWORD }}@postgres.default.svc.cluster.local:5432
+      - redis://redis.default.svc.cluster.local:6379?password={{ REDIS_PASSWORD }}
+
+    storage:
+      - s3://blackbox:eu-central-1.linodeobjects.com?aws_access_key_id={{ AWS_ACCESS_KEY_ID }}&aws_secret_access_key={{ AWS_SECRET_ACCESS_KEY }}
+
+    notifiers:
+      - {{ DEVOPS_WEBHOOK }}
+
+    retention_days: 7

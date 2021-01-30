@@ -1,0 +1,36 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: blackbox
+spec:
+  schedule: "0 16 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: blackbox
+            image: lemonsaurus/blackbox
+            imagePullPolicy: Always
+            envFrom:
+              - secretRef:
+                  name: postgres-env
+              - secretRef:
+                  name: redis-credentials
+              - secretRef:
+                  name: mongo-credentials
+              - secretRef:
+                  name: s3-credentials
+              - secretRef:
+                  name: discord-webhooks
+              - configMapRef:
+                  name: blackbox-env
+            volumeMounts:
+              - mountPath: /blackbox/config_file
+                name: blackbox-config
+          volumes:
+            - name: blackbox-config
+              configMap:
+                name: blackbox-config
+          restartPolicy: OnFailure
+      backoffLimit: 3
