@@ -25,7 +25,7 @@ spec:
               memory: 50Mi
           ports:
             - containerPort: 80
-          args: ["--auth-domain", "https://pydis.cloudflareaccess.com"]
+          args: ["--auth-domain", "https://pythondiscord.cloudflareaccess.com"]
 ---
 apiVersion: v1
 kind: Service
