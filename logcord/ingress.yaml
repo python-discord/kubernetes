@@ -4,7 +4,7 @@ metadata:
   name: logcord-cloudflare-access
 spec:
   forwardAuth:
-    address: http://traefik-auth-cloudflare.default.svc.cluster.local:80/auth/201fc817b9aecd63d78be3bd2d946b928ca540185bf402bce19e6eaa1a12df55
+    address: http://traefik-auth-cloudflare.default.svc.cluster.local:80/auth/4b5e0457a961d6ff6a2921a9294b70c7941abee5c30c8e35b0af8f2879f38ff2
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute

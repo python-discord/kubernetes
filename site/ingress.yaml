@@ -4,7 +4,7 @@ metadata:
   name: site-cloudflare-access
 spec:
   forwardAuth:
-    address: http://traefik-auth-cloudflare.default.svc.cluster.local:80/auth/a76e7078daa7c9ed400fc3040ff2daa22178aceb6abb8da6c9edba11da8c5b30
+    address: http://traefik-auth-cloudflare.default.svc.cluster.local:80/auth/087eaf0280d38585c26251e1a66cac0796a699e07c5213cec6732676ca408461
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
