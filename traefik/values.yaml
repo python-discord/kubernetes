@@ -19,6 +19,10 @@ logs:
     # To enable access logs
     enabled: false
 
+pilot:
+  token: "82e62b77-9c6a-4b3e-ad00-c817ee45e1cc"
+  enabled: true
+
 ports:
   websecure:
     tls:
