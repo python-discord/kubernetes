@@ -33,4 +33,8 @@ spec:
               configMap:
                 name: blackbox-config
           restartPolicy: OnFailure
+          nodeSelector:
+            # NOTE: This should be updated to match the highest spec
+            # instance that is being used by the cluster.
+            beta.kubernetes.io/instance-type: g6-standard-4
       backoffLimit: 3
