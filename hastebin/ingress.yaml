@@ -1,4 +1,13 @@
 apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: hastebin-py-redirector
+spec:
+  redirectRegex:
+    regex: ^https://paste.pythondiscord.com\/(.*)\.([^p][^y].*)
+    replacement: https://paste.pythondiscord.com/${1}.py
+---
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: hastebin
@@ -11,6 +20,8 @@ spec:
     services:
     - name: hastebin
       port: 80
+    middlewares:
+    - name: hastebin-py-redirector
   tls:
     certResolver: cfresolver
     domains:
