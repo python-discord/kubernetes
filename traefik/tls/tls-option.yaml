@@ -1,0 +1,11 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: TLSOption
+metadata:
+  name: default
+  namespace: kube-system
+spec:
+  clientAuth:
+    # the CA certificate is extracted from key `tls.ca` of the given secrets.
+    secretNames:
+      - cloudflare-origin-cert
+    clientAuthType: RequireAndVerifyClientCert
