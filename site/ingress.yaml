@@ -32,3 +32,17 @@ spec:
     - main: pythondiscord.com
     - main: api.pythondiscord.com
     - main: staff.pythondiscord.com
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: internal-api
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`pydis-api.default.svc.cluster.local`)
+    kind: Rule
+    services:
+    - name: site
+      port: 80

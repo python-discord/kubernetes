@@ -15,9 +15,5 @@ kind: Service
 metadata:
   name: pydis-api
 spec:
-  selector:
-    app: site
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8000
+  type: ExternalName
+  externalName: traefik.kube-system.svc.cluster.local
