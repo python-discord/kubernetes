@@ -18,6 +18,28 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8000
+              httpHeaders:
+                - name: Host
+                  value: pythondiscord.com
+            failureThreshold: 2
+            periodSeconds: 30
+            timeoutSeconds: 5
+            initialDelaySeconds: 10
+          startupProbe:
+            httpGet:
+              path: /
+              port: 8000
+              httpHeaders:
+                - name: Host
+                  value: pythondiscord.com
+            failureThreshold: 15
+            periodSeconds: 2
+            timeoutSeconds: 5
+            initialDelaySeconds: 10
           resources:
             limits:
               cpu: 500m
