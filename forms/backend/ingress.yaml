@@ -14,4 +14,4 @@ spec:
   tls:
     certResolver: cfresolver
     domains:
-    - main: api.forms.pythondiscord.com
+    - main: forms-api.pythondiscord.com
