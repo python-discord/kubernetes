@@ -1,8 +1,6 @@
 # Metabase
 These manifests provision an instance of Metabase, our database analysis tool.
 
-**NOTE: ** We do not use Metabase in production, it has been replaced by Redash. These manifests remain here as an archive.
-
 ## Secrets
 A single secret of name `metabase-env` is used with the following values:
 
