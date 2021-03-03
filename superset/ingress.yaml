@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: superset
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`superset.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: superset
+      port: 8088
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: superset.pythondiscord.com

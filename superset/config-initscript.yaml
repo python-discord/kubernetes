@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: superset-init
+data:
+  initscript.sh: |
+    #!/bin/sh
+    export PYTHONPATH=/config/
+    echo "Upgrading DB schema..."
+    superset db upgrade
+    echo "Initializing roles..."
+    superset init
