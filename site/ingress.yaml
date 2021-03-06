@@ -29,9 +29,8 @@ spec:
   tls:
     certResolver: cfresolver
     domains:
-    - main: pythondiscord.com
-    - main: api.pythondiscord.com
-    - main: staff.pythondiscord.com
+    - main: "*.pythondiscord.com"
+      sans: [pythondiscord.com]
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute

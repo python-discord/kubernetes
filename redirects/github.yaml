@@ -25,4 +25,4 @@ spec:
   tls:
     certResolver: cfresolver
     domains:
-    - main: git.pythondiscord.com
+    - main: "*.pythondiscord.com"

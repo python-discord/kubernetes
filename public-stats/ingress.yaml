@@ -14,4 +14,4 @@ spec:
   tls:
     certResolver: cfresolver
     domains:
-    - main: stats.pythondiscord.com
+    - main: "*.pythondiscord.com"

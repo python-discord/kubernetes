@@ -25,4 +25,4 @@ spec:
   tls:
     certResolver: cfresolver
     domains:
-    - main: paypal.pythondiscord.com
+    - main: "*.pythondiscord.com"

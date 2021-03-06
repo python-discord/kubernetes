@@ -24,4 +24,4 @@ spec:
   tls:
     certResolver: cfresolver
     domains:
-    - main: logcord.pythondiscord.com
+    - main: "*.pythondiscord.com"

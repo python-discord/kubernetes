@@ -25,4 +25,4 @@ spec:
   tls:
     certResolver: cfresolver
     domains:
-    - main: sentry.pythondiscord.com
+    - main: "*.pythondiscord.com"
