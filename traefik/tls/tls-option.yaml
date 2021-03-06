@@ -8,4 +8,5 @@ spec:
     # the CA certificate is extracted from key `tls.ca` of the given secrets.
     secretNames:
       - cloudflare-origin-cert
+      - pydis-origin-cert
     clientAuthType: RequireAndVerifyClientCert
