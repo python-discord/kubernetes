@@ -28,6 +28,10 @@ ports:
     tls:
       enabled: true
       certResolver: "cfresolver"
+      domains:
+        - main: "*.pythondiscord.com"
+          sans:
+            - pythondiscord.com
 
 globalArguments:
   - "--global.checknewversion"
