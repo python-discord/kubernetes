@@ -18,7 +18,7 @@ jobs:
 
       - name: Get list of files
         run: |
-          manifests=$(python find_manifests.py)
+          manifests=$(python scripts/find_manifests.py)
           manifests="${manifests//'%'/'%25'}"
           manifests="${manifests//$'\n'/'%0A'}"
           manifests="${manifests//$'\r'/'%0D'}"
