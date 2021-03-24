@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prestashop-svc
+spec:
+  selector:
+    app.kubernetes.io/instance: prestashop
+    app.kubernetes.io/name: prestashop
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prestashop
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`merch.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: prestashop-svc
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: "*.pythondiscord.com"
