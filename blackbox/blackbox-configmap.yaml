@@ -5,14 +5,37 @@ metadata:
 data:
   blackbox.yaml: |
     databases:
-      - mongodb://{{ MONGO_INITDB_ROOT_USERNAME }}:{{ MONGO_INITDB_ROOT_PASSWORD }}@mongodb.default.svc.cluster.local:27017
-      - postgres://{{ POSTGRES_USER }}:{{ POSTGRES_PASSWORD }}@postgres.default.svc.cluster.local:5432
-      - redis://redis.default.svc.cluster.local:6379?password={{ REDIS_PASSWORD }}
+      mongodb:
+        main_mongodb:
+          connection_string: mongodb://{{ MONGO_INITDB_ROOT_USERNAME }}:{{ MONGO_INITDB_ROOT_PASSWORD }}@mongodb.default.svc.cluster.local:27017
+      postgres:
+        main_postgres:
+          username: {{ POSTGRES_USER }}
+          password: {{ POSTGRES_PASSWORD }}
+          host: postgres.default.svc.cluster.local
+          port: "5432"
+      redis:
+        main_redis:
+          password: {{ REDIS_PASSWORD }}
+          host: redis.default.svc.cluster.local
+          port: "6379"
 
     storage:
-      - s3://blackbox:eu-central-1.linodeobjects.com?aws_access_key_id={{ AWS_ACCESS_KEY_ID }}&aws_secret_access_key={{ AWS_SECRET_ACCESS_KEY }}
+      s3:
+        frankfurt_s3:
+          bucket: blackbox
+          endpoint: eu-central-1.linodeobjects.com
+          aws_access_key_id: {{ AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: {{ AWS_SECRET_ACCESS_KEY }}
+        newark_s3:
+          bucket: blackbox
+          endpoint: us-east-1.linodeobjects.com
+          aws_access_key_id: {{ AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: {{ AWS_SECRET_ACCESS_KEY }}
 
     notifiers:
-      - {{ DEVOPS_WEBHOOK }}
+      discord:
+        dev_ops:
+          webhook: {{ DEVOPS_WEBHOOK }}
 
     retention_days: 7
