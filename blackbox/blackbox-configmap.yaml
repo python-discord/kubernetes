@@ -22,9 +22,14 @@ data:
 
     storage:
       s3:
-        main_s3:
+        frankfurt_s3:
           bucket: blackbox
           endpoint: eu-central-1.linodeobjects.com
+          aws_access_key_id: {{ AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: {{ AWS_SECRET_ACCESS_KEY }}
+        newark_s3:
+          bucket: blackbox
+          endpoint: us-east-1.linodeobjects.com
           aws_access_key_id: {{ AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: {{ AWS_SECRET_ACCESS_KEY }}
 
