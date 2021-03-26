@@ -25,6 +25,9 @@ spec:
                   name: discord-webhooks
               - configMapRef:
                   name: blackbox-env
+            env:
+              - name: BLACKBOX_CONFIG_PATH
+                value: "/blackbox/config_file/blackbox.yaml"
             volumeMounts:
               - mountPath: /blackbox/config_file
                 name: blackbox-config
