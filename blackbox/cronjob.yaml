@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: blackbox
 spec:
-  schedule: "0 16 * * *"
+  schedule: "0 15 * * *"
   jobTemplate:
     spec:
       template:
