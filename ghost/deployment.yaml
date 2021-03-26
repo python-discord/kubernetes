@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ghost
+  template:
+    metadata:
+      labels:
+        app: ghost
+    spec:
+      containers:
+        - name: ghost
+          image: ghost:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 2368
+          env:
+            - name: url
+              value: https://blog.pythondiscord.com
+          volumeMounts:
+            - mountPath: /var/lib/ghost/content
+              name: ghost-data
+      volumes:
+        - name: ghost-data
+          persistentVolumeClaim:
+            claimName: ghost-storage
