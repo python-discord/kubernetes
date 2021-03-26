@@ -23,8 +23,6 @@ spec:
                   name: s3-credentials
               - secretRef:
                   name: discord-webhooks
-              - configMapRef:
-                  name: blackbox-env
             env:
               - name: BLACKBOX_CONFIG_PATH
                 value: "/blackbox/config_file/blackbox.yaml"
