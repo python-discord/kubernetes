@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pixels
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pixels
+  template:
+    metadata:
+      labels:
+        app: pixels
+    spec:
+      containers:
+        - name: pixels
+          image: ghcr.io/python-discord/pixels:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: pixels-env
+      imagePullSecrets:
+        - name: ghcr-credentials
