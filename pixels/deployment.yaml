@@ -21,3 +21,5 @@ spec:
           envFrom:
             - secretRef:
                 name: pixels-env
+      imagePullSecrets:
+        - name: ghcr-credentials
