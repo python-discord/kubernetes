@@ -17,7 +17,7 @@ spec:
           image: ghcr.io/python-discord/pixels:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8000
+            - containerPort: 80
           envFrom:
             - secretRef:
                 name: pixels-env
