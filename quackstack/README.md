@@ -1,6 +1,6 @@
 # QuackStack
 
-The deployment for the [QuackStack](https://github.com/python-discord/quackstack) service, hosted at https://quackstack.pythondiscord.com.
+The deployment for the [QuackStack](https://github.com/python-discord/quackstack) project, hosted at https://quackstack.pythondiscord.com.
 
 This project doesn't need any configuration right now.
 
