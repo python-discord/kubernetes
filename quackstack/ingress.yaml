@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: quackstack
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`quackstack.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: quackstack
+      port: 80
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: "*.pythondiscord.com"
