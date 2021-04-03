@@ -13,7 +13,9 @@ data:
         "default/bot",
         "default/site",
         "default/sir-lancebot",
-        "default/metricity"
+        "default/metricity",
+        "default/snekbox",
+        "default/quackstack"
     ]
 
     [[olli.tokens]]
