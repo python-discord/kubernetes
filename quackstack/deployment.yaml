@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: quackstack
-          image: ghcr.io/python-discord/quackstack:latest
+          image: ghcr.io/python-discord/quackstack:main
           imagePullPolicy: Always
           ports:
             - containerPort: 80
