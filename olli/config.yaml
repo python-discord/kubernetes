@@ -23,6 +23,10 @@ data:
     color = "#ff5f5f"
 
     [[olli.tokens]]
+    token = "CRITICAL"
+    color = "#ff5f5f"
+
+    [[olli.tokens]]
     token = "WARN"
     color = "#ffe24d"
     case_sensitive = true
