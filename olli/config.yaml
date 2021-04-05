@@ -5,7 +5,7 @@ metadata:
 data:
   olli.toml: |
     [olli]
-    interval_minutes = 5
+    interval_minutes = 30
 
     [loki]
     api_url = "http://loki.loki.svc.cluster.local:3100/"
