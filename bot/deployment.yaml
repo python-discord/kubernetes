@@ -18,11 +18,11 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            cpu: 400m
-            memory: 400Mi
+            cpu: 750m
+            memory: 600Mi
           limits:
-            cpu: 500m
-            memory: 500Mi
+            cpu: 1000m
+            memory: 800Mi
         envFrom:
         - secretRef:
             name: bot-env

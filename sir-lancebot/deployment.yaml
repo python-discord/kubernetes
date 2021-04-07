@@ -18,11 +18,11 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            cpu: 5m
-            memory: 50Mi
-          limits:
-            cpu: 20m
+            cpu: 400m
             memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 200Mi
         envFrom:
         - secretRef:
             name: sir-lancebot-env
