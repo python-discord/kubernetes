@@ -11,8 +11,6 @@ spec:
     services:
     - name: ghost
       port: 2368
-    middlewares:
-    - name: global-chain
   tls:
     certResolver: cfresolver
     domains:

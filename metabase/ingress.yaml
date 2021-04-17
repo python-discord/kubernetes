@@ -11,8 +11,6 @@ spec:
     services:
     - name: metabase
       port: 80
-    middlewares:
-    - name: global-chain
   tls:
     certResolver: cfresolver
     domains:
