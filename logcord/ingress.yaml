@@ -21,6 +21,7 @@ spec:
       port: 80
     middlewares:
       - name: logcord-cloudflare-access
+      - name: global-chain
   tls:
     certResolver: cfresolver
     domains:

@@ -11,6 +11,8 @@ spec:
     services:
     - name: public-stats
       port: 8000
+    middlewares:
+    - name: global-chain
   tls:
     certResolver: cfresolver
     domains:

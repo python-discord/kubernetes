@@ -19,6 +19,8 @@ spec:
     services:
     - name: site
       port: 80
+    middlewares:
+    - name: global-chain
   - match: Host(`staff.pythondiscord.com`)
     kind: Rule
     services:
@@ -26,6 +28,7 @@ spec:
       port: 80
     middlewares:
     - name: site-cloudflare-access
+    - name: global-chain
   tls:
     certResolver: cfresolver
     domains:

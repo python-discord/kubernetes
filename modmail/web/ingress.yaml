@@ -21,6 +21,7 @@ spec:
       port: 80
     middlewares:
       - name: modmail-cloudflare-access
+      - name: global-chain
   tls:
     certResolver: cfresolver
     domains:

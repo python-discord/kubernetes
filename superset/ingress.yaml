@@ -11,6 +11,8 @@ spec:
     services:
     - name: superset
       port: 8088
+    middlewares:
+    - name: global-chain
   tls:
     certResolver: cfresolver
     domains:
