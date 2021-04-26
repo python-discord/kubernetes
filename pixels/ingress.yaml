@@ -1,4 +1,15 @@
 apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: pixels-ratelimit
+spec:
+  rateLimit:
+    average: 500
+    period: 10s
+    sourceCriterion:
+      requestHeaderName: Cf-Connecting-IP
+---
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: pixels
@@ -13,6 +24,7 @@ spec:
       port: 80
     middlewares:
     - name: global-chain
+    - name: pixels-ratelimit
   tls:
     certResolver: cfresolver
     domains:
