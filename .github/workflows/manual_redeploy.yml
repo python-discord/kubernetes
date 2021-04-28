@@ -18,12 +18,7 @@ jobs:
         run: |
           echo Invalid deployment specified.
           exit 1
-          
-  start_notification:
-    name: "Deployment start notification"
-    runs-on: ubuntu-latest
-    
-    steps:
+  
       - name: Deployment start notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -31,12 +26,14 @@ jobs:
         with:
           args: "@${{ github.event.sender.login }} has requested a redeployment of `${{ github.event.inputs.deployment }}`."
           
-  redeploy_service:
-    name: "Deploy service"
-    runs-on: ubuntu-latest
-    needs: [validate_job, start_notification]
-    
-    steps:
+      - name: Deployment rejected notification
+        if: ${{ failure() }}
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: "Deployment of `${{ github.event.inputs.deployment }}` by @${{ github.event.sender.login }} rejected."
+
       - name: Authenticate with Kubernetes
         uses: azure/k8s-set-context@v1
         with:
@@ -45,13 +42,7 @@ jobs:
           
       - name: Redeploy service
         run: kubectl rollout restart deployment ${{ github.event.inputs.deployment }}
-          
-  end_notification:
-    name: "Deployment finish notification"
-    runs-on: ubuntu-latest
-    needs: [redeploy_service]
-    
-    steps:
+
       - name: Deployment finish notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
