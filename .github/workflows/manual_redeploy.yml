@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Check if manual redeployment is allowed
-        if: github.event.inputs.deployment != "bot" && github.event.inputs.deployment != "site" && github.event.inputs.deployment != "modmail-bot"
+        if: ${{ github.event.inputs.deployment != "bot" && github.event.inputs.deployment != "site" && github.event.inputs.deployment != "modmail-bot" }}
         run: |
           echo Invalid deployment specified.
           exit 1
@@ -49,6 +49,7 @@ jobs:
   end_notification:
     name: "Deployment finish notification"
     runs-on: ubuntu-latest
+    needs: [redeploy_service]
     
     steps:
       - name: Deployment finish notification
