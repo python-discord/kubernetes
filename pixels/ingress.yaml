@@ -4,7 +4,7 @@ metadata:
   name: pixels-ratelimit
 spec:
   inFlightReq:
-    amount: 10
+    amount: 50
     sourceCriterion:
       requestHeaderName: Cf-Connecting-IP
 ---
