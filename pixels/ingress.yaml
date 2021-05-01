@@ -3,9 +3,8 @@ kind: Middleware
 metadata:
   name: pixels-ratelimit
 spec:
-  rateLimit:
-    average: 500
-    period: 10s
+  inFlightReq:
+    amount: 10
     sourceCriterion:
       requestHeaderName: Cf-Connecting-IP
 ---
