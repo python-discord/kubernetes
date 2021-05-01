@@ -1,0 +1,23 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: pixels-discord-channel
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: update-container
+            image: curlimages/curl:latest
+            command: ["/bin/sh"]
+            args: [
+              "-c", 
+              "curl -X POST -H \"Authorization: Bearer $PIXELS_TOKEN\" https://pixels.pythondiscord.com/webhook -v"
+            ]
+            envFrom:
+              - secretRef:
+                  name: pixels-update-cron-env
+          restartPolicy: OnFailure
+      backoffLimit: 3
