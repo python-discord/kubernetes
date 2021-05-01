@@ -3,7 +3,9 @@ kind: CronJob
 metadata:
   name: pixels-discord-channel
 spec:
-  schedule: "*/5 * * * *"
+  schedule: "* * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:
