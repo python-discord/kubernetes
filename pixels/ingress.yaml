@@ -9,6 +9,16 @@ spec:
       requestHeaderName: Cf-Connecting-IP
 ---
 apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: pixels-auth-ratelimit
+spec:
+  inFlightReq:
+    amount: 50
+    sourceCriterion:
+      requestHeaderName: Authorization
+---
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: pixels
@@ -24,6 +34,7 @@ spec:
     middlewares:
     - name: global-chain
     - name: pixels-ratelimit
+    - name: pixels-auth-ratelimit
   tls:
     certResolver: cfresolver
     domains:
