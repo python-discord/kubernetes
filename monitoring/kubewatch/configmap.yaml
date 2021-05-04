@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubewatch-config
+  namespace: monitoring
+data:
+  .kubewatch.yaml: |
+    namespace: ""
+    handler:
+      discord:
+        webhook: ""
+    ignores:
+    - pixels-discord-channel
+    resource:
+      deployment: true
+      replicationcontroller: true
+      replicaset: true
+      daemonset: true
+      services: true
+      pod: true
+      job: true
+      node: false
+      clusterrole: true
+      serviceaccount: true
+      persistentvolume: true
+      namespace: true
+      secret: true
+      configmap: true
+      ingress: true
