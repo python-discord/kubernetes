@@ -14,3 +14,5 @@ This deployment expects a number of secrets and environment variables to exist i
 | REDDIT_SECRET         | The client secret for the Reddit API      |
 | REDIS_PASSWORD        | The password to access Redis              |
 | SITE_URL              | The base URL for our website.             |
+| METABASE_USERNAME     | Username for Metabase                     |
+| METABASE_PASSWORD     | Password for Metabase                     |
