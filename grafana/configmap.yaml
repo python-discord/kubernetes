@@ -29,6 +29,9 @@ data:
   # Metrics
   GF_METRICS_ENABLED: "false"
 
+  # Tracing
+  GF_TRACING_JAEGER_ADDRESS: "jaeger.monitoring.svc.cluster.local:6831"
+
   # User sign up
   GF_USERS_AUTO_ASSIGN_ORG: "true"
   GF_USERS_AUTO_ASSIGN_ORG_ID: "2"
