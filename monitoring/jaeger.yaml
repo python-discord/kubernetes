@@ -18,7 +18,6 @@ spec:
           image: jaegertracing/all-in-one:1.22
           imagePullPolicy: Always
           ports:
-            - containerPort: 5775
             - containerPort: 6831
             - containerPort: 6832
             - containerPort: 5778
@@ -36,6 +35,61 @@ spec:
   selector:
     app: jaeger
   ports:
+    - protocol: UDP
+      port: 6831
+      targetPort: 6831
+      name: jaeger-thrift-compact
+    - protocol: UDP
+      port: 6832
+      targetPort: 6832
+      name: jaeger-thrift-binary
+    - protocol: TCP
+      port: 5778
+      targetPort: 5778
+      name: config-serve
     - protocol: TCP
       port: 16686
       targetPort: 16686
+      name: frontend-serve
+    - protocol: TCP
+      port: 14268
+      targetPort: 14268
+      name: jaeger-thrift-direct
+    - protocol: TCP
+      port: 14250
+      targetPort: 14250
+      name: model-proto
+    - protocol: TCP
+      port: 9411
+      targetPort: 9411
+      name: zipkin-compat
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: jaeger-cloudflare-access
+  namespace: monitoring
+spec:
+  forwardAuth:
+    address: http://traefik-auth-cloudflare.default.svc.cluster.local:80/auth/c0d03d44209336c5cd425b74892b1f71a3d2447dc0718a954962ff6a00c959c4
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: jaeger
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`jaeger.pythondiscord.com`)
+    kind: Rule
+    services:
+    - name: jaeger
+      port: 16686
+    middlewares:
+      - name: jaeger-cloudflare-access
+  tls:
+    certResolver: cfresolver
+    domains:
+    - main: "*.pythondiscord.com"
