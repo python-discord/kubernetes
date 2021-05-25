@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: pixels
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: pixels
@@ -18,8 +18,18 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+              name: http
           envFrom:
             - secretRef:
                 name: pixels-env
+          startupProbe:
+            httpGet:
+              path: /get_size
+              port: http
+              httpHeaders:
+                - name: Host
+                  value: pixels.pythondiscord.com
+            failureThreshold: 15
+            periodSeconds: 1
       imagePullSecrets:
         - name: ghcr-credentials
