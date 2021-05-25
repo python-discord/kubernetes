@@ -32,7 +32,6 @@ spec:
     - name: pixels
       port: 80
     middlewares:
-    - name: global-chain
     - name: pixels-ratelimit
     - name: pixels-auth-ratelimit
   tls:
