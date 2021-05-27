@@ -3,20 +3,12 @@ kind: Middleware
 metadata:
   name: pixels-ratelimit
 spec:
-  inFlightReq:
-    amount: 50
+  rateLimit:
+    period: 2m
+    burst: 4
+    average: 4
     sourceCriterion:
       requestHeaderName: Cf-Connecting-IP
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: pixels-auth-ratelimit
-spec:
-  inFlightReq:
-    amount: 50
-    sourceCriterion:
-      requestHeaderName: Authorization
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -26,14 +18,18 @@ spec:
   entryPoints:
     - websecure
   routes:
+  - match: Host(`pixels.pythondiscord.com`) && Path(`/set_pixel`)
+    kind: Rule
+    services:
+    - name: pixels
+      port: 80
+    middlewares: 
+    - name: pixels-ratelimit
   - match: Host(`pixels.pythondiscord.com`)
     kind: Rule
     services:
     - name: pixels
       port: 80
-    middlewares:
-    - name: pixels-ratelimit
-    - name: pixels-auth-ratelimit
   tls:
     certResolver: cfresolver
     domains:
