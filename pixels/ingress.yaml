@@ -4,9 +4,9 @@ metadata:
   name: pixels-set-ratelimit
 spec:
   rateLimit:
-    period: 1h
-    burst: 100
-    average: 100
+    period: 2m
+    burst: 4
+    average: 4
     sourceCriterion:
       requestHeaderName: Cf-Connecting-IP
 ---
