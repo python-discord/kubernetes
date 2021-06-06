@@ -4,9 +4,9 @@ metadata:
   name: pixels-set-ratelimit
 spec:
   rateLimit:
-    period: 2m
-    burst: 4
-    average: 4
+    period: 3m
+    burst: 10
+    average: 10
     sourceCriterion:
       requestHeaderName: Cf-Connecting-IP
 ---
@@ -42,7 +42,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`pixels.pythondiscord.com`) && Path(`/set_pixel`)
+  - match: Host(`pixels.pythondiscord.com`) && Path(`/set_pixel`) && Method(`POST`)
     kind: Rule
     services:
     - name: pixels
