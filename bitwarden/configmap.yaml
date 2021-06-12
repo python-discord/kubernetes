@@ -15,3 +15,6 @@ data:
 
   # Used for LiveSync
   WEBSOCKET_ENABLED: "true"
+
+  # Max conns to the DB
+  DATABASE_MAX_CONNS: "2"
