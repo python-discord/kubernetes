@@ -11,6 +11,8 @@ data:
         webhook: ""
     ignores:
     - pixels-discord-channel
+    - cert-manager-cainjector-leader-election
+    - cert-manager-controller
     resource:
       deployment: true
       replicationcontroller: true

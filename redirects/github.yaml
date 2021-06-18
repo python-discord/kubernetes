@@ -23,6 +23,4 @@ spec:
     middlewares:
       - name: github-redirect
   tls:
-    certResolver: cfresolver
-    domains:
-    - main: "*.pythondiscord.com"
+    secretName: "pythondiscord.com-tls"

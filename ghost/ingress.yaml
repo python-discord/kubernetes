@@ -12,6 +12,4 @@ spec:
     - name: ghost
       port: 2368
   tls:
-    certResolver: cfresolver
-    domains:
-    - main: "*.pythondiscord.com"
+    secretName: "pythondiscord.com-tls"
