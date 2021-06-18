@@ -14,6 +14,4 @@ spec:
     middlewares:
     - name: global-chain
   tls:
-    certResolver: cfresolver
-    domains:
-    - main: "*.pythondiscord.com"
+    secretName: "pythondiscord.com-tls"

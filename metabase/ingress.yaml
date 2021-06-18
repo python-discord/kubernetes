@@ -12,6 +12,4 @@ spec:
     - name: metabase
       port: 80
   tls:
-    certResolver: cfresolver
-    domains:
-    - main: "*.pythondiscord.com"
+    secretName: "pythondiscord.com-tls"

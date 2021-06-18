@@ -12,6 +12,4 @@ spec:
     - name: grafana
       port: 3000
   tls:
-    certResolver: cfresolver
-    domains:
-    - main: "*.pythondiscord.com"
+    secretName: "pythondiscord.com-tls"
