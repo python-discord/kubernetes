@@ -3,13 +3,8 @@ ingressClass:
   isDefaultClass: true
 
 deployment:
-  initContainers:
-    - name: volume-permissions
-      image: busybox:1.31.1
-      command: ["sh", "-c", "chmod -Rv 600 /data/*"]
-      volumeMounts:
-        - name: data
-          mountPath: /data
+  enabled: true
+  kind: DaemonSet
 
 logs:
   general:
@@ -26,33 +21,14 @@ ports:
   websecure:
     tls:
       enabled: true
-      certResolver: "cfresolver"
-      domains:
-        - main: "*.pythondiscord.com"
-          sans:
-            - pythondiscord.com
 
 globalArguments:
   - "--global.checknewversion"
 
 additionalArguments:
-  - "--certificatesresolvers.cfresolver=true"
-  - "--certificatesresolvers.cfresolver.acme.dnschallenge=true"
-  - "--certificatesresolvers.cfresolver.acme.dnschallenge.provider=cloudflare"
-  - "--certificatesresolvers.cfresolver.acme.email=letsencrypt@pythondiscord.com"
-  - "--certificatesresolvers.cfresolver.acme.storage=/certs/acme.json"
   - "--providers.kubernetesingress=true"
   - "--api.dashboard=true"
   - "--metrics.prometheus=true"
 
-envFrom:
-  - secretRef:
-      name: cloudflare-credentials
-
 persistence:
-  enabled: true
-  accessMode: ReadWriteOnce
-  size: 10Gi
-  storageClass: "linode-block-storage-retain"
-  path: /certs
-  annotations: {}
+  enabled: false
