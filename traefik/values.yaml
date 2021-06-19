@@ -15,7 +15,9 @@ logs:
     enabled: false
 
 pilot:
-  enabled: false
+  enabled: true
+  token: '9643ed70-f03f-4d3d-9792-df3142906ff4'
+  dashboard: true
 
 ports:
   websecure:
