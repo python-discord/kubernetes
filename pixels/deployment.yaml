@@ -24,7 +24,7 @@ spec:
                 name: pixels-env
           startupProbe:
             httpGet:
-              path: /get_size
+              path: /size
               port: http
               httpHeaders:
                 - name: Host
