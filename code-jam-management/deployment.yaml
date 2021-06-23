@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-jam-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-jam-management
+  template:
+    metadata:
+      labels:
+        app: code-jam-management
+    spec:
+      containers:
+        - name: codejam-management
+          image: ghcr.io/python-discord/code-jam-management:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4269
+          envFrom:
+            - secretRef:
+                name: code-jam-management-env
