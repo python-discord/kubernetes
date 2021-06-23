@@ -17,7 +17,7 @@ spec:
           image: ghcr.io/python-discord/code-jam-management:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8000
+            - containerPort: 4269
           envFrom:
             - secretRef:
                 name: code-jam-management-env
