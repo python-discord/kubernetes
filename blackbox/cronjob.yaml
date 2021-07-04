@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: blackbox
-            image: lemonsaurus/blackbox:main
+            image: lemonsaurus/blackbox:7f37f45
             imagePullPolicy: Always
             envFrom:
               - secretRef:
