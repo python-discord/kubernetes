@@ -28,3 +28,5 @@ spec:
             name: black-knight-env
         - secretRef:
             name: redis-credentials
+      imagePullSecrets:
+        - name: ghcr-credentials
