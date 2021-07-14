@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: black-knight
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: black-knight
+  template:
+    metadata:
+      labels:
+        app: black-knight
+    spec:
+      containers:
+      - name: black-knight
+        image: ghcr.io/python-discord/black-knight:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 400m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 200Mi
+        envFrom:
+        - secretRef:
+            name: black-knight-env
+        - secretRef:
+            name: redis-credentials
