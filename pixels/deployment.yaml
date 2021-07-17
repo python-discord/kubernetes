@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: pixels
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: pixels
