@@ -12,6 +12,7 @@ spec:
       labels:
         app: king-arthur
     spec:
+      serviceAccountName: king-arthur
       containers:
       - name: king-arthur
         image: ghcr.io/python-discord/king-arthur:latest
