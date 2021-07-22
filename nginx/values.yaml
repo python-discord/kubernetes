@@ -1,7 +1,7 @@
 controller:
   # Will add custom headers before sending response traffic to the client according to: https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#add-headers
   addHeaders:
-    x-test: b
+    x-powered-by: Joe Banks
 
   # This section refers to the creation of the IngressClass resource
   # IngressClass resources are supported since k8s >= 1.18
@@ -14,8 +14,3 @@ controller:
   metrics:
     port: 10254
     enabled: true
-
-  annotations:
-    prometheus.io/scrape: true
-    prometheus.io/port: 10254
-    
