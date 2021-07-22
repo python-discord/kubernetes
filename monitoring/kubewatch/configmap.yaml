@@ -13,6 +13,7 @@ data:
     - pixels-discord-channel
     - cert-manager-cainjector-leader-election
     - cert-manager-controller
+    - ingress-controller-leader-nginx
     resource:
       deployment: true
       replicationcontroller: true
