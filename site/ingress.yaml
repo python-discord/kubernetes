@@ -1,47 +1,45 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: site-cloudflare-access
-spec:
-  forwardAuth:
-    address: http://traefik-auth-cloudflare.default.svc.cluster.local:80/auth/087eaf0280d38585c26251e1a66cac0796a699e07c5213cec6732676ca408461
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "kube-system/mtls-client-crt-bundle"
+    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
   name: site
 spec:
-  entryPoints:
-    - websecure
-  routes:
-  - match: Host(`pythondiscord.com`) || Host(`api.pythondiscord.com`)
-    kind: Rule
-    services:
-    - name: site
-      port: 80
-    middlewares:
-    - name: global-chain
-  - match: Host(`staff.pythondiscord.com`)
-    kind: Rule
-    services:
-    - name: site
-      port: 80
-    middlewares:
-    - name: site-cloudflare-access
-    - name: global-chain
   tls:
-    secretName: "pythondiscord.com-tls"
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: internal-api
-spec:
-  entryPoints:
-    - web
-  routes:
-  - match: Host(`pydis-api.default.svc.cluster.local`)
-    kind: Rule
-    services:
-    - name: site
-      port: 80
+  - hosts:
+      - "*.pythondiscord.com"
+      - "pythondiscord.com"
+    secretName: pythondiscord.com-tls
+  rules:
+  - host: pythondiscord.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: site
+            port:
+              number: 80
+  - host: api.pythondiscord.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: site
+            port:
+              number: 80
+  - host: staff.pythondiscord.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: site
+            port:
+              number: 80

@@ -16,4 +16,4 @@ metadata:
   name: pydis-api
 spec:
   type: ExternalName
-  externalName: traefik.kube-system.svc.cluster.local
+  externalName: site.default.svc.cluster.local

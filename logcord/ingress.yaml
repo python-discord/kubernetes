@@ -1,26 +1,24 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: logcord-cloudflare-access
-spec:
-  forwardAuth:
-    address: http://traefik-auth-cloudflare.default.svc.cluster.local:80/auth/4b5e0457a961d6ff6a2921a9294b70c7941abee5c30c8e35b0af8f2879f38ff2
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "kube-system/mtls-client-crt-bundle"
+    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
   name: logcord
 spec:
-  entryPoints:
-    - websecure
-  routes:
-  - match: Host(`logcord.pythondiscord.com`)
-    kind: Rule
-    services:
-    - name: logcord
-      port: 80
-    middlewares:
-      - name: logcord-cloudflare-access
-      - name: global-chain
   tls:
-    secretName: "pythondiscord.com-tls"
+  - hosts:
+      - "*.pythondiscord.com"
+    secretName: pythondiscord.com-tls
+  rules:
+  - host: logcord.pythondiscord.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: logcord
+            port:
+              number: 80

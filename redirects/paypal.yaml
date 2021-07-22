@@ -1,26 +1,25 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/rewrite-target: "https://www.paypal.com/paypalme/pythondiscord"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "kube-system/mtls-client-crt-bundle"
+    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
   name: paypal-redirect
 spec:
-  redirectRegex:
-    regex: ^https://paypal.pythondiscord.com/(.*)
-    replacement: https://www.paypal.com/paypalme/pythondiscord
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: paypal-redirect
-spec:
-  entryPoints:
-    - websecure
-  routes:
-  - match: Host(`paypal.pythondiscord.com`)
-    kind: Rule
-    services:
-      - name: site
-        port: 80
-    middlewares:
-      - name: paypal-redirect
   tls:
-    secretName: "pythondiscord.com-tls"
+  - hosts:
+      - "*.pythondiscord.com"
+    secretName: pythondiscord.com-tls
+  rules:
+  - host: paypal.pythondiscord.com
+    http:
+      paths:
+      - path: /(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: site
+            port:
+              number: 80

@@ -11,18 +11,27 @@ spec:
       port: 80
       targetPort: 8080
 ---
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: prestashop
+  annotations:
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "kube-system/mtls-client-crt-bundle"
+    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  name: merch
 spec:
-  entryPoints:
-    - websecure
-  routes:
-  - match: Host(`merch.pythondiscord.com`)
-    kind: Rule
-    services:
-    - name: prestashop-svc
-      port: 80
   tls:
-    secretName: "pythondiscord.com-tls"
+  - hosts:
+      - "*.pythondiscord.com"
+    secretName: pythondiscord.com-tls
+  rules:
+  - host: merch.pythondiscord.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prestashop-svc
+            port:
+              number: 80
