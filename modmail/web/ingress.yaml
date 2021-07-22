@@ -19,6 +19,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: modmail
+            name: modmail-web
             port:
               number: 80
