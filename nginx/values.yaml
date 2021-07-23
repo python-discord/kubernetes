@@ -3,6 +3,9 @@ controller:
   addHeaders:
     x-powered-by: Joe Banks
 
+  config:
+    use-proxy-protocol: true
+
   # This section refers to the creation of the IngressClass resource
   # IngressClass resources are supported since k8s >= 1.18
   ingressClassResource:
@@ -10,6 +13,11 @@ controller:
     default: true
 
   kind: DaemonSet
+
+  service:
+    annotations:
+      service.beta.kubernetes.io/linode-loadbalancer-throttle: 0
+      service.beta.kubernetes.io/linode-loadbalancer-default-proxy-protocol: v2
 
   metrics:
     port: 10254
