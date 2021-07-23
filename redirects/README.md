@@ -3,6 +3,6 @@ Some of our point to an external service, for example https://git.pythondiscord.
 
 This folder contains all the redirects for our subdomains.
 
-They consist of a Traefik Middleware to handle the redirection and a Traefik IngressRoute to bring traffic into the cluster.
+They consist of an Ingress to handle the redirection through rewrrite annotations.
 
 To deploy these routes simply run `kubectl apply -f .` in this folder.
