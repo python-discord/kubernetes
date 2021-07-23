@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      serviceAccountName: prometheus
+      containers:
+      - image: prom/prometheus:latest
+        imagePullPolicy: Always
+        args: [
+          "--storage.tsdb.path", "/opt/prometheus/data",
+          "--config.file", "/etc/prometheus/prometheus.yaml"
+        ]
+        name: prometheus
+        ports:
+        - name: prometheus
+          containerPort: 9090
+        volumeMounts:
+        - name: prometheus-data
+          mountPath: /opt/prometheus/data
+        - name: prometheus-config
+          mountPath: /etc/prometheus
+      restartPolicy: Always
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
+      volumes:
+        - name: prometheus-data
+          persistentVolumeClaim:
+            claimName: prometheus-storage
+        - name: prometheus-config
+          configMap:
+            name: prometheus-config
