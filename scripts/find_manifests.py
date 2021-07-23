@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 potential_manifests = []
 
@@ -15,6 +16,10 @@ for file in potential_manifests:
 
         if "apiVersion:" in contents:
             # File is likely a k8s manifests
-            likely_manifests.append(file)
+
+            path = Path(file)
+            # Ignore manifests that start with _
+            if not Path(path).stem.startswith("_"):
+                likely_manifests.append(file)
 
 print("\n".join(likely_manifests))
