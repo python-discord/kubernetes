@@ -10,6 +10,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres-exporter
+  namespace: monitoring
 spec:
   replicas: 1
   selector:
@@ -22,7 +23,7 @@ spec:
     spec:
       containers:
         - name: postgres-exporter
-          image: wrouesnel/postgres_exporter:latest
+          image: quay.io/prometheuscommunity/postgres-exporter:latest
           imagePullPolicy: Always
           resources:
             requests:
@@ -41,6 +42,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: postgres-exporter
+  namespace: monitoring
   annotations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "9187"
