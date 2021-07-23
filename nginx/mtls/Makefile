@@ -1,5 +1,5 @@
 certs:
-	cat *.pem >> ca.crt
+	cat *.pem > ca.crt
 
 secret:
 	kubectl create secret -n kube-system generic mtls-client-crt-bundle --from-file=ca.crt=ca.crt
