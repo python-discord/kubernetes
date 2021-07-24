@@ -32,3 +32,6 @@ data:
   # User sign up
   GF_USERS_AUTO_ASSIGN_ORG: "true"
   GF_USERS_AUTO_ASSIGN_ORG_ID: "2"
+
+  # Feature toggles
+  GF_FEATURE_TOGGLES_ENABLE: "ngalert"
