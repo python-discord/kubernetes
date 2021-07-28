@@ -4,7 +4,9 @@ controller:
     x-powered-by: Joe Banks
 
   config:
-    use-proxy-protocol: true
+    enable-real-ip: true
+    forwarded-for-header: cf-connecting-ip
+    generate-request-id: true
 
   # This section refers to the creation of the IngressClass resource
   # IngressClass resources are supported since k8s >= 1.18
@@ -17,7 +19,7 @@ controller:
   service:
     annotations:
       service.beta.kubernetes.io/linode-loadbalancer-throttle: 0
-      service.beta.kubernetes.io/linode-loadbalancer-default-proxy-protocol: v2
+      service.beta.kubernetes.io/linode-loadbalancer-default-proxy-protocol: none
 
   metrics:
     port: 10254
