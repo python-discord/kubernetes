@@ -16,4 +16,4 @@ metadata:
   name: pydis-api
 spec:
   type: ExternalName
-  externalName: site.default.svc.cluster.local
+  externalName: ingress-nginx-internal.kube-system.svc.cluster.local
