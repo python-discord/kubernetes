@@ -13,7 +13,7 @@ spec:
         app: h-asgi
     spec:
       containers:
-      - name: bot
+      - name: h-asgi
         image: ghcr.io/vcokltfre/h:latest
         imagePullPolicy: Always
         resources:
