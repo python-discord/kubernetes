@@ -5,7 +5,7 @@ metadata:
     nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
     nginx.ingress.kubernetes.io/auth-tls-secret: "kube-system/mtls-client-crt-bundle"
     nginx.ingress.kubernetes.io/auth-tls-error-page: "https://letterh.xyz"
-  name: h
+  name: h-asgi
 spec:
   tls:
   - hosts:
@@ -19,6 +19,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: h
+            name: h-asgi
             port:
               number: 80

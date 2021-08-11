@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: h
+  name: h-asgi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: h
+      app: h-asgi
   template:
     metadata:
       labels:
-        app: h
+        app: h-asgi
     spec:
       containers:
       - name: bot
