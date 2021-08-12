@@ -20,7 +20,9 @@ spec:
         imagePullPolicy: Always
         args: [
           "--storage.tsdb.path", "/opt/prometheus/data",
-          "--config.file", "/etc/prometheus/prometheus.yaml"
+          "--config.file", "/etc/prometheus/prometheus.yaml",
+          "--web.external-url", "https://prometheus.pythondiscord.com",
+          "--web.enable-lifecycle"
         ]
         name: prometheus
         ports:
@@ -31,6 +33,8 @@ spec:
           mountPath: /opt/prometheus/data
         - name: prometheus-config
           mountPath: /etc/prometheus
+        - name: prometheus-alerts
+          mountPath: /opt/pydis/prometheus/alerts.d
       restartPolicy: Always
       securityContext:
         fsGroup: 2000
@@ -43,3 +47,6 @@ spec:
         - name: prometheus-config
           configMap:
             name: prometheus-config
+        - name: prometheus-alerts
+          configMap:
+            name: prometheus-alert-rules

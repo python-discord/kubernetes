@@ -9,6 +9,16 @@ data:
     global:
       scrape_interval: 15s
 
+    rule_files:
+      - /opt/pydis/prometheus/alerts.d/*.yaml
+
+    alerting:
+      alertmanagers:
+        - scheme: http
+          static_configs:
+          - targets:
+            - alertmanager.monitoring.svc.cluster.local:9093
+
     # Scrape configs for running Prometheus on a Kubernetes cluster.
     # This uses separate scrape configs for cluster components (i.e. API server, node)
     # and services to allow each to use different authentication configs.
