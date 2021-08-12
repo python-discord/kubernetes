@@ -13,6 +13,9 @@ smtpPort: 587
 smtpUser: merch@pythondiscord.com
 smtpProtocol: tls
 
+podAnnotations:
+  prometheus.io/scrape: "false"
+
 mariadb:
   primary:
     persistence:
@@ -38,3 +41,9 @@ persistence:
   storageClass: "linode-block-storage-retain"
 
   size: 10Gi
+
+metrics:
+  enabled: false
+
+  podAnnotations:
+    prometheus.io/scrape: "false"
