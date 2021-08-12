@@ -8,6 +8,9 @@ controller:
     forwarded-for-header: cf-connecting-ip
     generate-request-id: true
 
+  extraArgs:
+    default-ssl-certificate: "default/pythondiscord.com-tls"
+
   # This section refers to the creation of the IngressClass resource
   # IngressClass resources are supported since k8s >= 1.18
   ingressClassResource:
