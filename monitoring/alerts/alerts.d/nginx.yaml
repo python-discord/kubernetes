@@ -1,0 +1,31 @@
+groups:
+- name: nginx
+  rules:
+
+  - alert: NGINX4XXRequests
+    expr: sum(rate(nginx_ingress_controller_requests{status=~"^4.."}[1m])) / sum(rate(nginx_ingress_controller_requests{}[1m])) > 0.5
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: "High rate of 4XX requests for inbound requests"
+      description: 'Rate of 4XX errors is {{ $value | humanizePercentage }}'
+
+
+  - alert: NGINX5XXRequests
+    expr: sum(rate(nginx_ingress_controller_requests{status=~"^5.."}[1m])) / sum(rate(nginx_ingress_controller_requests{}[1m])) > 0.5
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: "High rate of 5XX requests for inbound requests"
+      description: 'Rate of 5XX errors is {{ $value | humanizePercentage }}'
+
+  - alert: NGINXP99Timing
+    expr: histogram_quantile(0.99, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket[2m])) by (host, service, le)) > 3
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: "Request timing P99 has been over 3 seconds for 1 minute"
+      description: "Requests to service {{ $labels.host }} (to service {{ $labels.service }}) have taken over 3 seconds (P99) to complete."

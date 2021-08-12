@@ -1,0 +1,29 @@
+groups:
+- name: postgres
+  rules:
+  - alert: PostgresUp
+    expr: pg_up == 0
+    for: 0m
+    labels:
+      severity: page
+    annotations:
+      summary: "PostgreSQL is offline"
+      description: "Postgres Exporter cannot connect to PostgreSQL."
+
+  - alert: PostgresTooManyConnections
+    expr: sum(pg_stat_activity_count{datname!~"template.*|postgres"}) > 90
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: Too many PostgresSQL connections
+      description: "PostgreSQL instance has too many connections (> 90 conns), currently: {{ $value }} connections"
+
+  - alert: PostgresDeadlockedTable
+    expr: increase(pg_stat_database_deadlocks{datname!~"template.*|postgres"}[1m]) > 3
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: Too many deadlocked tables
+      description: "PostgreSQL has dead-locks, value: {{ $value }}"
