@@ -16,7 +16,7 @@ receivers:
     text: |
       {{ if eq .Status "firing" }}{{ range .Alerts }}
       **{{ .Annotations.summary }}:**
-      {{ .Annotations.description }}
+      {{ .Annotations.description }} [(Link)]({{.GeneratorURL}})
       
       {{ end }}{{ else }}Alert has resolved.{{ end }}
     fields:
