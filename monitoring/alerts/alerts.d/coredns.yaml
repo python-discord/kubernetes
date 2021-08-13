@@ -12,7 +12,7 @@ groups:
       description: "Number of CoreDNS panics encountered: {{ $value }}"
 
   - alert: CoreDNSCacheMisses
-    expr: rate(coredns_cache_misses_total{}[10m]) / rate(coredns_cache_misses_total{}[10m] offset 10m) > 1.2
+    expr: rate(coredns_cache_misses_total{}[10m]) / rate(coredns_cache_misses_total{}[10m] offset 10m) > 1.5
     labels:
       severity: page
     annotations:
