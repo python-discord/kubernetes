@@ -22,10 +22,10 @@ groups:
       description: 'Rate of 5XX errors is {{ $value | humanizePercentage }}'
 
   - alert: NGINXP99Timing
-    expr: histogram_quantile(0.99, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket{service!~"(site|grafana)"}[2m])) by (host, service, le)) > 3
-    for: 1m
+    expr: histogram_quantile(0.99, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket{service!~"(site|grafana)"}[5m])) by (host, service, le)) > 3
+    for: 5m
     labels:
       severity: page
     annotations:
-      summary: "Request timing P99 has been over 3 seconds for 1 minute"
+      summary: "Request timing P99 has been over 3 seconds for 5 minutes"
       description: "Requests to service {{ $labels.host }} (to service {{ $labels.service }}) have taken over 3 seconds (P99) to complete."
