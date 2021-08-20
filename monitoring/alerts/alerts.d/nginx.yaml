@@ -3,23 +3,22 @@ groups:
   rules:
 
   - alert: NGINX4XXRequests
-    expr: sum(rate(nginx_ingress_controller_requests{status=~"^4.."}[1m])) / sum(rate(nginx_ingress_controller_requests{}[1m])) > 0.5
+    expr: sum(rate(nginx_ingress_controller_requests{status=~"^4.."}[1m])) by (service) / sum(rate(nginx_ingress_controller_requests[1m])) by (service) > 0.5
     for: 1m
     labels:
       severity: page
     annotations:
       summary: "High rate of 4XX requests for inbound requests"
-      description: 'Rate of 4XX errors is {{ $value | humanizePercentage }}'
-
+      description: "Rate of 4XX errors is {{ $value | humanizePercentage }} on service `{{ $labels.service }}`"
 
   - alert: NGINX5XXRequests
-    expr: sum(rate(nginx_ingress_controller_requests{status=~"^5.."}[1m])) / sum(rate(nginx_ingress_controller_requests{}[1m])) > 0.5
+    expr: sum(rate(nginx_ingress_controller_requests{status=~"^5.."}[1m])) by (service) / sum(rate(nginx_ingress_controller_requests{}[1m])) by (service) > 0.5
     for: 1m
     labels:
       severity: page
     annotations:
       summary: "High rate of 5XX requests for inbound requests"
-      description: 'Rate of 5XX errors is {{ $value | humanizePercentage }}'
+      description: "Rate of 5XX errors is {{ $value | humanizePercentage }} on service `{{ $labels.service }}`"
 
   - alert: NGINXP99Timing
     expr: histogram_quantile(0.99, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket{service!~"(site|grafana)"}[5m])) by (host, service, le)) > 3
