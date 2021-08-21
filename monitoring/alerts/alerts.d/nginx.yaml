@@ -21,7 +21,7 @@ groups:
       description: "Rate of 5XX errors is {{ $value | humanizePercentage }} on service `{{ $labels.service }}`"
 
   - alert: NGINXP99Timing
-    expr: histogram_quantile(0.99, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket{service!~"(site|grafana)"}[5m])) by (host, service, le)) > 3
+    expr: histogram_quantile(0.99, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket{service!~"(site|grafana|metabase)"}[5m])) by (host, service, le)) > 3
     for: 5m
     labels:
       severity: page
