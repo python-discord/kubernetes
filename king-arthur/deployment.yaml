@@ -27,3 +27,5 @@ spec:
         envFrom:
         - secretRef:
             name: king-arthur-env
+        securityContext:
+            readOnlyRootFilesystem: true

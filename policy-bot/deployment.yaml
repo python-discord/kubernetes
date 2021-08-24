@@ -28,6 +28,8 @@ spec:
           volumeMounts:
             - mountPath: /secrets
               name: policy-bot-config
+          securityContext:
+            readOnlyRootFilesystem: true
           envFrom:
             - secretRef:
                 name: policy-bot-secrets

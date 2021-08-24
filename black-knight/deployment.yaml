@@ -28,5 +28,7 @@ spec:
             name: black-knight-env
         - secretRef:
             name: redis-credentials
+        securityContext:
+            readOnlyRootFilesystem: true
       imagePullSecrets:
         - name: ghcr-credentials

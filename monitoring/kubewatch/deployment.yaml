@@ -23,6 +23,8 @@ spec:
         envFrom:
         - secretRef:
             name: kubewatch-secrets
+        securityContext:
+            readOnlyRootFilesystem: true
       restartPolicy: Always
       volumes:
       - name: config-volume

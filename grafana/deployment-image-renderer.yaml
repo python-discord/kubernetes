@@ -25,3 +25,5 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8081
+          securityContext:
+            readOnlyRootFilesystem: true

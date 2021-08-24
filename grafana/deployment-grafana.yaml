@@ -35,6 +35,8 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/grafana
               name: grafana-volume
+          securityContext:
+            readOnlyRootFilesystem: true
       volumes:
         - name: grafana-volume
           persistentVolumeClaim:

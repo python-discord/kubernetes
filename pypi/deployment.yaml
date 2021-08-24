@@ -30,6 +30,8 @@ spec:
               mountPath: /data/packages
             - name: pypi-auth
               mountPath: /data/auth
+          securityContext:
+            readOnlyRootFilesystem: true
       volumes:
         - name: pypi-data-volume
           persistentVolumeClaim:

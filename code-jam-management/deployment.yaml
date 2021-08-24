@@ -21,3 +21,5 @@ spec:
           envFrom:
             - secretRef:
                 name: code-jam-management-env
+          securityContext:
+            readOnlyRootFilesystem: true

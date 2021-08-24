@@ -30,3 +30,11 @@ spec:
             name: sentry-env
         - secretRef:
             name: redis-credentials
+        volumeMounts:
+        - mountPath: /bot/logs
+          name: logs-vol
+        securityContext:
+          readOnlyRootFilesystem: true
+      volumes:
+      - name: logs-vol
+        emptyDir: {}

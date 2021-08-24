@@ -26,3 +26,5 @@ spec:
         envFrom:
         - secretRef:
             name: thread-bot-env
+        securityContext:
+            readOnlyRootFilesystem: true

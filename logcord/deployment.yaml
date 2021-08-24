@@ -30,3 +30,11 @@ spec:
                 name: logcord-config-env
             - secretRef:
                 name: logcord-secret-env
+          volumeMounts:
+          - mountPath: /tmp
+            name: logcord-temp-vol
+          securityContext:
+            readOnlyRootFilesystem: true
+      volumes:
+      - name: logcord-temp-vol
+        emptyDir: {}

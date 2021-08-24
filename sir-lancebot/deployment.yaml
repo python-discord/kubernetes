@@ -28,3 +28,16 @@ spec:
             name: sir-lancebot-env
         - secretRef:
             name: redis-credentials
+        securityContext:
+            readOnlyRootFilesystem: true
+        volumeMounts:
+            - name: lancebot-data-vol
+              mountPath: /bot/_latex_cache
+            - name: lancebot-tmp-vol
+              mountPath: /tmp
+      volumes:
+      - name: lancebot-data-vol
+        emptyDir: {}
+      - name: lancebot-tmp-vol
+        emptyDir:
+          medium: Memory

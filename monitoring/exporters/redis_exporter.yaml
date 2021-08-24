@@ -37,6 +37,8 @@ spec:
           envFrom:
             - secretRef:
                 name: redis-exporter-env
+          securityContext:
+            readOnlyRootFilesystem: true
 ---
 apiVersion: v1
 kind: Service

@@ -23,6 +23,19 @@ spec:
               cpu: 100m
               memory: 500Mi
           imagePullPolicy: "Always"
+          volumeMounts:
+          - mountPath: /modmailbot/plugins
+            name: plugins-vol
+          - mountPath: /modmailbot/temp
+            name: temp-vol
           envFrom:
             - secretRef:
                 name: modmail
+          securityContext:
+            readOnlyRootFilesystem: true
+      volumes:
+      - name: plugins-vol
+        emptyDir: {}
+      - name: temp-vol
+        emptyDir:
+          medium: Memory
