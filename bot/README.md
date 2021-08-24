@@ -16,3 +16,4 @@ This deployment expects a number of secrets and environment variables to exist i
 | SITE_URL              | The base URL for our website.             |
 | METABASE_USERNAME     | Username for Metabase                     |
 | METABASE_PASSWORD     | Password for Metabase                     |
+| BOT_DEBUG             | Debug mode true/false                     |
