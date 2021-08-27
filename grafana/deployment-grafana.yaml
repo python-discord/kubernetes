@@ -42,4 +42,6 @@ spec:
           persistentVolumeClaim:
             claimName: grafana-storage
       securityContext:
-        fsGroup: 472
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true

@@ -28,6 +28,8 @@ spec:
           mountPath: /opt/pydis/alertmanager/config.d
         - name: alertmanager-webhooks
           mountPath: /opt/pydis/alertmanager/webhooks
+        - name: alertmanager-tmp-data
+          mountPath: /data
         securityContext:
           readOnlyRootFilesystem: true
       restartPolicy: Always
@@ -38,3 +40,9 @@ spec:
         - name: alertmanager-webhooks
           secret:
             secretName: alert-manager-hook
+        - name: alertmanager-tmp-data
+          emptyDir: {}
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsNonRoot: true

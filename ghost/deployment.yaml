@@ -14,6 +14,10 @@ spec:
       labels:
         app: ghost
     spec:
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
       containers:
         - name: ghost
           image: ghost:latest

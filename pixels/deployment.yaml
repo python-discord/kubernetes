@@ -35,3 +35,7 @@ spec:
             readOnlyRootFilesystem: true
       imagePullSecrets:
         - name: ghcr-credentials
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true

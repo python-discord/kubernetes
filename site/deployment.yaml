@@ -61,3 +61,7 @@ spec:
       - name: django-tmp
         emptyDir:
           medium: Memory
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsNonRoot: true

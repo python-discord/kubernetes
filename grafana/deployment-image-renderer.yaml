@@ -12,6 +12,10 @@ spec:
       labels:
         app: grafana-image-renderer
     spec:
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
       containers:
         - name: grafana-image-renderer
           image: grafana/grafana-image-renderer:latest

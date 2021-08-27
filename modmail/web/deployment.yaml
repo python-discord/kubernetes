@@ -30,3 +30,7 @@ spec:
                 name: modmail
           securityContext:
             readOnlyRootFilesystem: true
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true

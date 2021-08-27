@@ -12,10 +12,19 @@ spec:
       labels:
         app: code-jam-management
     spec:
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
       containers:
         - name: codejam-management
           image: ghcr.io/python-discord/code-jam-management:latest
           imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /tmp
+              name: code-jam-mgmt-tmp
+            - mountPath: /.cache
+              name: code-jam-mgmt-venv
           ports:
             - containerPort: 5000
           envFrom:
@@ -23,3 +32,9 @@ spec:
                 name: code-jam-management-env
           securityContext:
             readOnlyRootFilesystem: true
+      volumes:
+      - name: code-jam-mgmt-tmp
+        emptyDir:
+          medium: Memory
+      - name: code-jam-mgmt-venv
+        emptyDir: {}
