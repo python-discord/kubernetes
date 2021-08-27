@@ -53,23 +53,11 @@ spec:
             - secretRef:
                 name: sentry-env
           volumeMounts:
-            - name: django-staticfiles
-              mountPath: /app/staticfiles
-            - name: django-bulma-dodgy-mount-fix
-              mountPath: /usr/local/lib/python3.9/site-packages/django_simple_bulma/css/
-            - name: django-bulma-dodgy-mount-fix-futureproof
-              mountPath: /usr/local/lib/python3.10/site-packages/django_simple_bulma/css/
             - name: django-tmp
               mountPath: /tmp
           securityContext:
             readOnlyRootFilesystem: true
       volumes:
-      - name: django-staticfiles
-        emptyDir: {}
-      - name: django-bulma-dodgy-mount-fix
-        emptyDir: {}
-      - name: django-bulma-dodgy-mount-fix-futureproof
-        emptyDir: {}
       - name: django-tmp
         emptyDir:
           medium: Memory
