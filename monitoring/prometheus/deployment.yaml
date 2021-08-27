@@ -31,6 +31,8 @@ spec:
         ports:
         - name: prometheus
           containerPort: 9090
+        securityContext:
+          readOnlyRootFilesystem: true
         volumeMounts:
         - name: prometheus-data
           mountPath: /opt/prometheus/data

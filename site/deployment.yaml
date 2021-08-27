@@ -52,3 +52,16 @@ spec:
                 name: site-env
             - secretRef:
                 name: sentry-env
+          volumeMounts:
+            - name: django-tmp
+              mountPath: /tmp
+          securityContext:
+            readOnlyRootFilesystem: true
+      volumes:
+      - name: django-tmp
+        emptyDir:
+          medium: Memory
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsNonRoot: true

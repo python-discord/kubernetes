@@ -12,6 +12,10 @@ spec:
       labels:
         app: black-knight
     spec:
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
       containers:
       - name: black-knight
         image: ghcr.io/python-discord/black-knight:latest
@@ -28,5 +32,7 @@ spec:
             name: black-knight-env
         - secretRef:
             name: redis-credentials
+        securityContext:
+          readOnlyRootFilesystem: true
       imagePullSecrets:
         - name: ghcr-credentials

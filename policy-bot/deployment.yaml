@@ -28,6 +28,8 @@ spec:
           volumeMounts:
             - mountPath: /secrets
               name: policy-bot-config
+          securityContext:
+            readOnlyRootFilesystem: true
           envFrom:
             - secretRef:
                 name: policy-bot-secrets
@@ -35,3 +37,7 @@ spec:
         - name: policy-bot-config
           configMap:
             name: policy-bot-defaults
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
