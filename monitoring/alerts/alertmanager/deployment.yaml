@@ -29,7 +29,7 @@ spec:
         - name: alertmanager-webhooks
           mountPath: /opt/pydis/alertmanager/webhooks
         securityContext:
-            readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: true
       restartPolicy: Always
       volumes:
         - name: alertmanager-config

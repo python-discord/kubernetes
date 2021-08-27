@@ -28,4 +28,4 @@ spec:
         - secretRef:
             name: king-arthur-env
         securityContext:
-            readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: true

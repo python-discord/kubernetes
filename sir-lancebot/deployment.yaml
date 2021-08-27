@@ -29,7 +29,7 @@ spec:
         - secretRef:
             name: redis-credentials
         securityContext:
-            readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: true
         volumeMounts:
             - name: lancebot-data-vol
               mountPath: /bot/_latex_cache

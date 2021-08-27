@@ -32,7 +32,7 @@ spec:
         - name: prometheus
           containerPort: 9090
         securityContext:
-            readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: true
         volumeMounts:
         - name: prometheus-data
           mountPath: /opt/prometheus/data

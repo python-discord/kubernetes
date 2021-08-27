@@ -20,5 +20,5 @@ spec:
         - --metric-labels-allowlist=pods=[*]
         name: kube-state-metrics
         securityContext:
-            readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: true
       restartPolicy: Always

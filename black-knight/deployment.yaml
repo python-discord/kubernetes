@@ -29,6 +29,6 @@ spec:
         - secretRef:
             name: redis-credentials
         securityContext:
-            readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: true
       imagePullSecrets:
         - name: ghcr-credentials

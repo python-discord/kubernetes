@@ -51,7 +51,7 @@ spec:
           - name: metrics
             containerPort: 9100
         securityContext:
-            readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: true
         resources:
           requests:
             cpu: 10m

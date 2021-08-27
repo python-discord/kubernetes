@@ -27,4 +27,4 @@ spec:
         - secretRef:
             name: thread-bot-env
         securityContext:
-            readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: true

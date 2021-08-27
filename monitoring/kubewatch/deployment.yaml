@@ -24,7 +24,7 @@ spec:
         - secretRef:
             name: kubewatch-secrets
         securityContext:
-            readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: true
       restartPolicy: Always
       volumes:
       - name: config-volume
