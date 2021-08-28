@@ -30,7 +30,3 @@ spec:
       - name: config-volume
         configMap:
           name: kubewatch-config
-      securityContext:
-        fsGroup: 2000
-        runAsUser: 1000
-        runAsNonRoot: true
