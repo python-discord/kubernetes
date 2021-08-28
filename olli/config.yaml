@@ -15,7 +15,9 @@ data:
         "default/sir-lancebot",
         "default/metricity",
         "default/snekbox",
-        "default/quackstack"
+        "default/quackstack",
+        "default/thread-bot",
+        "default/black-knight"
     ]
 
     [[olli.tokens]]
