@@ -18,7 +18,8 @@ spec:
         name: alertmanager
         args: [
           "--config.file=/opt/pydis/alertmanager/config.d/alertmanager.yaml",
-          "--web.external-url=https://alertmanager.pythondiscord.com"
+          "--web.external-url=https://alertmanager.pythondiscord.com",
+          "--storage.path=/data/alertmanager"
         ]
         ports:
         - name: alertmanager
