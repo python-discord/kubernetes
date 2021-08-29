@@ -29,10 +29,16 @@ spec:
             volumeMounts:
               - mountPath: /blackbox/config_file
                 name: blackbox-config
+              - mountPath: /tmp
+                name: blackbox-tmp
+            securityContext:
+              readOnlyRootFilesystem: true
           volumes:
             - name: blackbox-config
               configMap:
                 name: blackbox-config
+            - name: blackbox-tmp
+              emptyDir: {}
           restartPolicy: OnFailure
           nodeSelector:
             # NOTE: This should be updated to match the highest spec
