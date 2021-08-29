@@ -31,5 +31,11 @@ spec:
                   value: pixels.pythondiscord.com
             failureThreshold: 15
             periodSeconds: 1
+          securityContext:
+            readOnlyRootFilesystem: true
       imagePullSecrets:
         - name: ghcr-credentials
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true

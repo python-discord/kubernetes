@@ -12,6 +12,10 @@ spec:
       labels:
         app: bot
     spec:
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
       containers:
       - name: bot
         image: ghcr.io/python-discord/bot:latest
@@ -30,3 +34,11 @@ spec:
             name: sentry-env
         - secretRef:
             name: redis-credentials
+        volumeMounts:
+        - mountPath: /bot/logs
+          name: logs-vol
+        securityContext:
+          readOnlyRootFilesystem: true
+      volumes:
+      - name: logs-vol
+        emptyDir: {}

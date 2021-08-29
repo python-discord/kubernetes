@@ -4,6 +4,8 @@ metadata:
   name: redis
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: redis
@@ -34,6 +36,8 @@ spec:
               mountPath: /data           # Must match the dir in the redis.conf
             - name: redis-config-volume
               mountPath: /config
+          securityContext:
+            readOnlyRootFilesystem: true
 
       volumes:
         - name: redis-data-volume
@@ -43,3 +47,7 @@ spec:
           configMap:
             name: redis-conf
 
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsNonRoot: true

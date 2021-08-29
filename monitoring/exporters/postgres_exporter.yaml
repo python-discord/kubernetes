@@ -37,6 +37,12 @@ spec:
           envFrom:
             - secretRef:
                 name: postgres-exporter-env
+          securityContext:
+            readOnlyRootFilesystem: true
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
 ---
 apiVersion: v1
 kind: Service

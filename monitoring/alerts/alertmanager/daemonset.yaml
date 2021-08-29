@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: alertmanager
+  namespace: monitoring
+spec:
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: "100%"
+      maxSurge: "100%"
+  selector:
+    matchLabels:
+      app: alertmanager
+  template:
+    metadata:
+      labels:
+        app: alertmanager
+    spec:
+      containers:
+      - image: prom/alertmanager:latest
+        imagePullPolicy: Always
+        name: alertmanager
+        command:
+          - /bin/sh
+          - -c
+          - |
+            exec /bin/alertmanager \
+              --config.file=/opt/pydis/alertmanager/config.d/alertmanager.yaml \
+              --web.external-url=https://alertmanager.pythondiscord.com \
+              --storage.path=/data/alertmanager \
+              $(nslookup -type=A alertmanager-sd.monitoring.svc.cluster.local | grep -E "Address: " | awk '{ print "--cluster.peer="$2":9094"; }')
+        ports:
+        - name: am
+          containerPort: 9093
+        - name: am-peering
+          containerPort: 9094
+        volumeMounts:
+        - name: alertmanager-config
+          mountPath: /opt/pydis/alertmanager/config.d
+        - name: alertmanager-webhooks
+          mountPath: /opt/pydis/alertmanager/webhooks
+        - name: alertmanager-tmp-data
+          mountPath: /data
+        securityContext:
+          readOnlyRootFilesystem: true
+      restartPolicy: Always
+      volumes:
+        - name: alertmanager-config
+          configMap:
+            name: alertmanager-config
+        - name: alertmanager-webhooks
+          secret:
+            secretName: alert-manager-hook
+        - name: alertmanager-tmp-data
+          emptyDir: {}
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsNonRoot: true

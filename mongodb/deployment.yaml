@@ -4,6 +4,8 @@ metadata:
   name: mongodb
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: mongodb
@@ -28,10 +30,17 @@ spec:
           volumeMounts:
             - mountPath: /data/db
               name: mongodb-volume
+            - mountPath: /tmp
+              name: mongo-temp
           envFrom:
           - secretRef:
               name: mongo-credentials
+          securityContext:
+            readOnlyRootFilesystem: true
       volumes:
         - name: mongodb-volume
           persistentVolumeClaim:
             claimName: mongodb-storage
+        - name: mongo-temp
+          emptyDir:
+            medium: Memory

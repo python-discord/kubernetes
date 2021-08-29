@@ -30,3 +30,5 @@ spec:
                 name: bitwarden-secret-env
             - configMapRef:
                 name: bitwarden-config-env
+          securityContext:
+            readOnlyRootFilesystem: true

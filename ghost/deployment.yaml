@@ -4,6 +4,8 @@ metadata:
   name: ghost
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: ghost
@@ -12,6 +14,10 @@ spec:
       labels:
         app: ghost
     spec:
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
       containers:
         - name: ghost
           image: ghost:latest
@@ -24,6 +30,8 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/ghost/content
               name: ghost-data
+          securityContext:
+            readOnlyRootFilesystem: true
       volumes:
         - name: ghost-data
           persistentVolumeClaim:

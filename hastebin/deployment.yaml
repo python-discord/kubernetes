@@ -27,9 +27,15 @@ spec:
               memory: 100Mi
           ports:
             - containerPort: 7777
+          securityContext:
+            readOnlyRootFilesystem: true
           volumeMounts:
             - name: hastebin-init-volume
               mountPath: /init
+            - name: hastebin-code-volume
+              mountPath: /haste-server
+            - name: hastebin-npm-cache
+              mountPath: /home/node/
           envFrom:
             - secretRef:
                 name: hastebin-redis-password
@@ -39,3 +45,11 @@ spec:
         - name: hastebin-init-volume
           configMap:
             name: hastebin-init
+        - name: hastebin-code-volume
+          emptyDir: {}
+        - name: hastebin-npm-cache
+          emptyDir: {}
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
