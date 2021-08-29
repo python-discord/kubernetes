@@ -1,14 +1,9 @@
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
   name: alertmanager
   namespace: monitoring
 spec:
-  updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: "100%"
-      maxSurge: "100%"
   selector:
     matchLabels:
       app: alertmanager
@@ -21,20 +16,14 @@ spec:
       - image: prom/alertmanager:latest
         imagePullPolicy: Always
         name: alertmanager
-        command:
-          - /bin/sh
-          - -c
-          - |
-            exec /bin/alertmanager \
-              --config.file=/opt/pydis/alertmanager/config.d/alertmanager.yaml \
-              --web.external-url=https://alertmanager.pythondiscord.com \
-              --storage.path=/data/alertmanager \
-              $(nslookup -type=A alertmanager-sd.monitoring.svc.cluster.local | grep -E "Address: " | awk '{ print "--cluster.peer="$2":9094"; }')
+        args: [
+          "--config.file=/opt/pydis/alertmanager/config.d/alertmanager.yaml",
+          "--web.external-url=https://alertmanager.pythondiscord.com",
+          "--storage.path=/data/alertmanager"
+        ]
         ports:
-        - name: am
+        - name: alertmanager
           containerPort: 9093
-        - name: am-peering
-          containerPort: 9094
         volumeMounts:
         - name: alertmanager-config
           mountPath: /opt/pydis/alertmanager/config.d

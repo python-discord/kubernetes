@@ -15,11 +15,9 @@ data:
     alerting:
       alertmanagers:
         - scheme: http
-          dns_sd_configs:
-          - names:
-            - alertmanager-sd.monitoring.svc.cluster.local
-            type: A
-            port: 9093
+          static_configs:
+          - targets:
+            - alertmanager.monitoring.svc.cluster.local:9093
 
     # Scrape configs for running Prometheus on a Kubernetes cluster.
     # This uses separate scrape configs for cluster components (i.e. API server, node)
