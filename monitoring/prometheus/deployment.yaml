@@ -23,6 +23,7 @@ spec:
           "--config.file", "/etc/prometheus/prometheus.yaml",
           "--web.external-url", "https://prometheus.pythondiscord.com",
           "--web.enable-lifecycle",
+          "--web.enable-admin-api",
           "--web.page-title", "Python Discord Prometheus",
           "--storage.tsdb.retention.size", "20GB",
           "--storage.tsdb.retention.time", "100d"
