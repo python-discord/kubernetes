@@ -5,4 +5,4 @@ If any secrets are required for each exporter they will be documented **in a com
 
 Below is a list of the exporters:
 - [postgres_exporter](https://github.com/wrouesnel/postgres_exporter)
-
+- [redis_exporter](https://github.com/oliver006/redis_exporter)
