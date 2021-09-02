@@ -11,8 +11,8 @@ groups:
       description: "Pod has been in a non-ready state for longer than 3 minutes."
 
   - alert: KubernetesPodCrashLooping
-    expr: increase(kube_pod_container_status_restarts_total[1m]) > 3
-    for: 2m
+    expr: increase(kube_pod_container_status_restarts_total[5m]) > 3
+    for: 1m
     labels:
       severity: warning
     annotations:
