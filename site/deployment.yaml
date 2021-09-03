@@ -47,12 +47,17 @@ spec:
             requests:
               cpu: 250m
               memory: 400Mi
+          env:
+            - name: PROMETHEUS_MULTIPROC_DIR
+              value: /tmp
           envFrom:
             - secretRef:
                 name: site-env
             - secretRef:
                 name: sentry-env
           volumeMounts:
+            # Used for `gunicorn` worker heartbeats as well as the Prometheus
+            # client library's multiprocessing mode.
             - name: django-tmp
               mountPath: /tmp
           securityContext:
