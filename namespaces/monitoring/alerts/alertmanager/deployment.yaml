@@ -1,14 +1,10 @@
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
   name: alertmanager
   namespace: monitoring
 spec:
-  updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: "100%"
-      maxSurge: "100%"
+  replicas: 3
   selector:
     matchLabels:
       app: alertmanager
@@ -17,6 +13,20 @@ spec:
       labels:
         app: alertmanager
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - alertmanager
+              namespaces:
+              - monitoring
+              topologyKey: kubernetes.io/hostname
+            weight: 100
       containers:
       - image: prom/alertmanager:latest
         imagePullPolicy: Always
