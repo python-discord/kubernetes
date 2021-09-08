@@ -25,7 +25,7 @@ spec:
           "--web.enable-lifecycle",
           "--web.enable-admin-api",
           "--web.page-title", "Python Discord Prometheus",
-          "--storage.tsdb.retention.size", "20GB",
+          "--storage.tsdb.retention.size", "28GB",
           "--storage.tsdb.retention.time", "100d"
         ]
         name: prometheus
