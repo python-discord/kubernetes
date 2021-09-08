@@ -13,6 +13,7 @@ spec:
       labels:
         app: alertmanager
     spec:
+      serviceAccountName: prometheus
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -27,6 +28,20 @@ spec:
               - monitoring
               topologyKey: kubernetes.io/hostname
             weight: 100
+      initContainers:
+      - image: debian:bullseye-slim
+        imagePullPolicy: Always
+        name: alertmanager-peering-setup
+        command: [
+          '/opt/pydis/alertmanager/init.d/find-pods.sh'
+        ]
+        volumeMounts:
+        - name: alertmanager-init
+          mountPath: /opt/pydis/alertmanager/init.d
+        - name: alertmanager-tmp
+          mountPath: /tmp
+        securityContext:
+          runAsUser: 0
       containers:
       - image: prom/alertmanager:latest
         imagePullPolicy: Always
@@ -39,7 +54,7 @@ spec:
               --config.file=/opt/pydis/alertmanager/config.d/alertmanager.yaml \
               --web.external-url=https://alertmanager.pythondiscord.com \
               --storage.path=/data/alertmanager \
-              $(nslookup -type=A alertmanager-sd.monitoring.svc.cluster.local | grep -E "Address: " | awk '{ print "--cluster.peer="$2":9094"; }')
+              $(cat /tmp/peers)
         ports:
         - name: am
           containerPort: 9093
@@ -52,6 +67,8 @@ spec:
           mountPath: /opt/pydis/alertmanager/webhooks
         - name: alertmanager-tmp-data
           mountPath: /data
+        - name: alertmanager-tmp
+          mountPath: /tmp
         securityContext:
           readOnlyRootFilesystem: true
       restartPolicy: Always
@@ -64,7 +81,12 @@ spec:
             secretName: alert-manager-hook
         - name: alertmanager-tmp-data
           emptyDir: {}
+        - name: alertmanager-tmp
+          emptyDir: {}
+        - name: alertmanager-init
+          configMap:
+            name: alertmanager-init
+            defaultMode: 0777
       securityContext:
         fsGroup: 1000
         runAsUser: 1000
-        runAsNonRoot: true
