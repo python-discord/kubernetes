@@ -1,3 +1,8 @@
+---
+title: Manual Deploys
+layout: default
+---
+
 # Manual Deployments
 
 When the DevOps team are not available, Administrators and Core Developers can redeploy our critical services, such as Bot, Site and ModMail.
