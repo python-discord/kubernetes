@@ -21,15 +21,15 @@ At 14:30 we started receiving alerts that services were becoming unreachable. We
 
 Upon checking Linode our NodeBalancer, the service which balances traffic between our Kubernetes nodes was reporting the backends (the services it balances to) as down. It reported all 4 as down (two for port 80 + two for port 443). This status was fluctuating between up and down, meaning traffic was not reaching our cluster correctly. Scaleios correctly noted:
 
-![/static/images/2021-01-30/scaleios.png](/static/images/2021-01-30/scaleios.png)
+![{{site.baseurl}}/static/images/2021-01-30/scaleios.png]({{site.baseurl}}/static/images/2021-01-30/scaleios.png)
 
 The config seems to have been set incorrectly due to memory and CPU pressure on one of our nodes. Here is the memory throughout the incident:
 
-![/static/images/2021-01-30/memory_charts.png](/static/images/2021-01-30/memory_charts.png)
+![{{site.baseurl}}/static/images/2021-01-30/memory_charts.png]({{site.baseurl}}/static/images/2021-01-30/memory_charts.png)
 
 Here is the display from Linode:
 
-![/static/images/2021-01-30/linode_loadbalancers.png](/static/images/2021-01-30/linode_loadbalancers.png)
+![{{site.baseurl}}/static/images/2021-01-30/linode_loadbalancers.png]({{site.baseurl}}/static/images/2021-01-30/linode_loadbalancers.png)
 
 ## 🥏 Impact
 
@@ -61,7 +61,7 @@ The incident resolved itself upstream at Linode, we've opened a ticket with Lino
 
 We've set up alerts for when Prometheus services stop responding since this seems to be a fairly tell-tale symptom of networking problems, this was the Prometheus status graph throughout the incident:
 
-![/static/images/2021-01-30/prometheus_status.png](/static/images/2021-01-30/prometheus_status.png)
+![{{site.baseurl}}/static/images/2021-01-30/prometheus_status.png]({{site.baseurl}}/static/images/2021-01-30/prometheus_status.png)
 
 ## 🔎 Five Why's
 

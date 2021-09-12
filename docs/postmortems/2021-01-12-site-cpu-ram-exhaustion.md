@@ -7,8 +7,6 @@ nav_order: 4
 
 # 2021-01-12: Django site CPU/RAM exhaustion outage
 
-**Executive summary**
-
 At 03:01 UTC on Tuesday 12th January we experienced a momentary outage of our PostgreSQL database, causing some very minor service downtime.
 
 # ⚠️ Leadup
@@ -25,7 +23,7 @@ This caused a CPU & RAM spike on our Django site, which in turn triggered an OOM
 
 Django site did not have any tools in place to batch the requests so was trying to process all 80k user updates in a single query, something that PostgreSQL probably could handle, but not the Django ORM. During the incident site jumped from it's average RAM usage of 300-400MB to **1.5GB.**
 
-![/static/images/2021-01-12/site_resource_abnormal.png](/static/images/2021-01-12/site_resource_abnormal.png)
+![{{site.baseurl}}/static/images/2021-01-12/site_resource_abnormal.png]({{site.baseurl}}/static/images/2021-01-12/site_resource_abnormal.png)
 
 RAM and CPU usage of site throughout the incident. The period just before 3:40 where no statistics were reported is the actual outage period where the Kubernetes node had some networking errors.
 
@@ -76,7 +74,7 @@ for chunk in chunks(diff.updated, 1000):
 
 Resource limits were also put into place on site to prevent RAM and CPU spikes, and throttle the CPU usage in these situations. This can be seen in the below graph:
 
-![/static/images/2021-01-12/site_cpu_throttle.png](/static/images/2021-01-12/site_cpu_throttle.png)
+![{{site.baseurl}}/static/images/2021-01-12/site_cpu_throttle.png]({{site.baseurl}}/static/images/2021-01-12/site_cpu_throttle.png)
 
 CPU throttling is where a container has hit the limits and we need to reel it in. Ideally this value stays as closes to 0 as possible, however as you can see site hit this twice (during the periods where it was trying to sync 80k users at once)
 
