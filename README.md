@@ -1,5 +1,6 @@
 # Kubernetes
-Configuration and documentation for Python Discord's Kubernetes setup!
+Configuration and [documentation](https://python-discord.github.io/kubernetes/)
+for Python Discord's Kubernetes setup!
 
 
 # How to create secrets
