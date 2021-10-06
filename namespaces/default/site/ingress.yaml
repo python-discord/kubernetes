@@ -15,10 +15,9 @@ spec:
   tls:
   - hosts:
       - "*.pythondiscord.com"
-      - "pythondiscord.com"
     secretName: pythondiscord.com-tls
   rules:
-  - host: pythondiscord.com
+  - host: www.pythondiscord.com
     http:
       paths:
       - path: /
