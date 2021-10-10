@@ -17,7 +17,7 @@ spec:
           image: ghcr.io/python-discord/patsy:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 8000
               name: http
           envFrom:
             - secretRef:
