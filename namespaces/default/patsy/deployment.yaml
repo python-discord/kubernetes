@@ -29,7 +29,7 @@ spec:
               httpHeaders:
                 - name: Host
                   value: patsy.pythondiscord.com
-            failureThreshold: 15
+            failureThreshold: 3
             periodSeconds: 1
           securityContext:
             readOnlyRootFilesystem: true
