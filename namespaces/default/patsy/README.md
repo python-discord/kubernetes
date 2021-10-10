@@ -7,4 +7,4 @@ The hope with this project is that we can inspect what topics get asked about of
 
 ## Secret
 
-It requires a `patsy-env` secret with the values defined [here](https://github.com/python-discord/patsy#env-file).
+It requires a `patsy-env` secret with the values defined [here](https://git.pydis.com/patsy#env-file).
