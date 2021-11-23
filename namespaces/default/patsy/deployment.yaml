@@ -31,6 +31,7 @@ spec:
                   value: patsy.pythondiscord.com
             failureThreshold: 3
             periodSeconds: 1
+            initialDelaySeconds: 10
           securityContext:
             readOnlyRootFilesystem: true
       securityContext:
