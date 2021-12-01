@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: thread-bot
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: thread-bot
