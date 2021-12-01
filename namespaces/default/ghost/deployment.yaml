@@ -20,7 +20,7 @@ spec:
         runAsNonRoot: true
       containers:
         - name: ghost
-          image: ghost:latest
+          image: ghost:4.21
           imagePullPolicy: Always
           ports:
             - containerPort: 2368
