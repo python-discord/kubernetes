@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: modmail-bot
-          image: ghcr.io/python-discord/modmail:574eb60
+          image: ghcr.io/python-discord/modmail:1d241a1
           resources:
             requests:
               cpu: 50m
