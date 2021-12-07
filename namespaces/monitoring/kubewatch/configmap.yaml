@@ -15,6 +15,7 @@ data:
     - cert-manager-controller
     - ingress-controller-leader-nginx
     - cluster-autoscaler-status
+    - ingress-controller-leader
     resource:
       deployment: true
       replicationcontroller: true
