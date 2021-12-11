@@ -756,4 +756,5 @@ data:
     #------------------------------------------------------------------------------
 
     # Add settings for extensions here
-
+    shared_preload_libraries = 'pg_cron'
+    cron.database_name = 'metricity'
