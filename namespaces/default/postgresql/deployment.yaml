@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: ghcr.io/chrislovering/psql_pg_cron:14
+          image: ghcr.io/chrislovering/psql_extended:14
           imagePullPolicy: "Always"
           ports:
             - name: postgres
