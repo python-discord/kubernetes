@@ -14,13 +14,15 @@ spec:
     spec:
       serviceAccountName: kube-state-metrics
       containers:
-      - image: k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.1.0
+      - image: ghcr.io/python-discord/kube-state-metrics:v2.1.0
         imagePullPolicy: Always
         args:
         - --metric-labels-allowlist=pods=[*]
         name: kube-state-metrics
         securityContext:
           readOnlyRootFilesystem: true
+      imagePullSecrets:
+        - name: ghcr-pull-secret
       restartPolicy: Always
       securityContext:
         fsGroup: 2000
