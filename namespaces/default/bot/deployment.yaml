@@ -37,8 +37,12 @@ spec:
         volumeMounts:
         - mountPath: /bot/logs
           name: logs-vol
+        - mountPath: /.cache/python-tldextract
+          name: tldextract-cache
         securityContext:
           readOnlyRootFilesystem: true
       volumes:
       - name: logs-vol
+        emptyDir: {}
+      - name: tldextract-cache
         emptyDir: {}
