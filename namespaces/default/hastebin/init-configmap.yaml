@@ -16,7 +16,7 @@ data:
     #!/bin/bash
 
     # Clone the repo
-    git clone https://github.com/seejohnrun/haste-server.git
+    git clone https://github.com/toptal/haste-server.git
     cd haste-server
     
     # Monkey patch - don't add extensions to the URLs.
