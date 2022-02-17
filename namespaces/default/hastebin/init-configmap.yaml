@@ -25,6 +25,7 @@ data:
     # JS code changes significantly. It makes the URL display as "file" 
     # instead of "file.py" when you save a file, which makes it possible
     # to share the URL without triggering Discord's suspicious URL filter.
+    mv /init/monkeypatch_extensions.sh ./monkeypatch_extensions.sh
     chmod +x monkeypatch_extensions.sh
     ./monkeypatch_extensions.sh 
     
