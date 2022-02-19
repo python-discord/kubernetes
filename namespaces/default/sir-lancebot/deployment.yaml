@@ -32,7 +32,7 @@ spec:
           readOnlyRootFilesystem: true
         volumeMounts:
             - name: lancebot-data-vol
-              mountPath: /bot/exts/fun/_latex_cache
+              mountPath: /bot/bot/exts/fun/_latex_cache
             - name: lancebot-logs-vol
               mountPath: /bot/bot/log
             - name: lancebot-tmp-vol
