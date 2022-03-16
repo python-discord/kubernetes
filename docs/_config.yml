@@ -7,7 +7,7 @@ url: "https://python-discord.github.io"
 twitter_username: PythonDiscord
 github_username:  python-discord
 
-remote_theme: pmarsceill/just-the-docs
+remote_theme: just-the-docs/just-the-docs
 theme: just-the-docs
 plugins:
   - jekyll-feed
