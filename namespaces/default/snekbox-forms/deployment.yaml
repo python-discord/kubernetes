@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snekbox-forms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snekbox-forms
+  template:
+    metadata:
+      labels:
+        app: snekbox-forms
+    spec:
+      containers:
+        - name: snekbox-forms
+          image: ghcr.io/python-discord/snekbox:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8060
+          securityContext:
+            privileged: true
