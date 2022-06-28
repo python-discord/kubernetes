@@ -26,7 +26,7 @@ spec:
             - mountPath: /.cache
               name: code-jam-mgmt-venv
           ports:
-            - containerPort: 5000
+            - containerPort: 8000
           envFrom:
             - secretRef:
                 name: code-jam-management-env
