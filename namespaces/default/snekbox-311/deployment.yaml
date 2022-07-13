@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snekbox-311
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snekbox-311
+  template:
+    metadata:
+      labels:
+        app: snekbox-311
+    spec:
+      containers:
+        - name: snekbox-311
+          image: ghcr.io/python-discord/snekbox:3.11
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8060
+          securityContext:
+            privileged: true
