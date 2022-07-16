@@ -4,7 +4,7 @@ groups:
 
   - alert: NGINX4XXRequests
     expr: sum by(service) (rate(nginx_ingress_controller_requests{status=~"^4..", status!="404"}[1m])) / sum by(service) (rate(nginx_ingress_controller_requests[1m])) > 0.5
-    for: 1m
+    for: 15m
     labels:
       severity: page
     annotations:
