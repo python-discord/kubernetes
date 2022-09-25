@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pixels-modsite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pixels-modsite
+  template:
+    metadata:
+      labels:
+        app: pixels-modsite
+    spec:
+      containers:
+        - name: pixels-modsite
+          image: ghcr.io/python-discord/modsite:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: pixels-modsite-env
+          startupProbe:
+            httpGet:
+              path: /healthcheckz
+              port: 80
+              httpHeaders:
+                - name: Host
+                  value: pixels-modsite.pythondiscord.com
+            failureThreshold: 15
+            periodSeconds: 2
+            timeoutSeconds: 5
+            initialDelaySeconds: 10
+          securityContext:
+            readOnlyRootFilesystem: true
+      imagePullSecrets:
+        - name: ghcr-credentials
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
