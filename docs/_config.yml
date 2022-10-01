@@ -8,7 +8,6 @@ twitter_username: PythonDiscord
 github_username:  python-discord
 
 remote_theme: just-the-docs/just-the-docs
-theme: just-the-docs
 plugins:
   - jekyll-feed
 
