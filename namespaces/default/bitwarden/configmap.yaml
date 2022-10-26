@@ -18,3 +18,6 @@ data:
 
   # Max conns to the DB
   DATABASE_MAX_CONNS: "2"
+
+  # Force bitwarden to use postgres, rather than it's own volume
+  I_REALLY_WANT_VOLATILE_STORAGE: "true"
