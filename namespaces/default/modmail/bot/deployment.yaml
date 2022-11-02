@@ -28,6 +28,9 @@ spec:
             name: plugins-vol
           - mountPath: /modmailbot/temp
             name: temp-vol
+          env:
+          - name: TMPDIR
+            value: /modmailbot/temp
           envFrom:
             - secretRef:
                 name: modmail
