@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: modmail-web
-          image: kyb3rr/logviewer:latest
+          image: ghcr.io/python-discord/logviewer:latest
           imagePullPolicy: Always
           resources:
             requests:
