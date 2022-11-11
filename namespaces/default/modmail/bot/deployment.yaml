@@ -17,11 +17,11 @@ spec:
           image: ghcr.io/python-discord/modmail:latest
           resources:
             requests:
-              cpu: 50m
-              memory: 350Mi
-            limits:
-              cpu: 100m
+              cpu: 75m
               memory: 500Mi
+            limits:
+              cpu: 125m
+              memory: 750Mi
           imagePullPolicy: "Always"
           volumeMounts:
           - mountPath: /modmailbot/plugins
