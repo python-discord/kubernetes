@@ -17,14 +17,14 @@ spec:
           image: ghcr.io/python-discord/pixels:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 8000
           envFrom:
             - secretRef:
                 name: pixels-env
           startupProbe:
             httpGet:
               path: /canvas/size
-              port: 80
+              port: 8000
               httpHeaders:
                 - name: Host
                   value: pixels.pythondiscord.com
