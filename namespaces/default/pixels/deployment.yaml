@@ -23,7 +23,7 @@ spec:
                 name: pixels-env
           startupProbe:
             httpGet:
-              path: /canvas/size
+              path: /health
               port: 8000
               httpHeaders:
                 - name: Host
