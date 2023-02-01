@@ -19,11 +19,6 @@ jobs:
       - name: Get list of files
         run: |
           manifests=$(python scripts/find_manifests.py)
-          manifests="${manifests//'%'/'%25'}"
-          manifests="${manifests//$'\n'/'%0A'}"
-          manifests="${manifests//$'\r'/'%0D'}"
-
-          echo $manifests
 
           echo "manifests=$manifests" >> $GITHUB_OUTPUT
         id: manifest-files
