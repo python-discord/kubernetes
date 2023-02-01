@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Get list of files
         run: |
@@ -25,11 +25,13 @@ jobs:
 
           echo $manifests
 
-          echo "::set-output name=manifests::$manifests"
+          echo "manifests=$manifests" >> $GITHUB_OUTPUT
         id: manifest-files
 
+      - uses: azure/setup-kubectl@v3
+
       - name: Authenticate with Kubernetes
-        uses: azure/k8s-set-context@v1
+        uses: azure/k8s-set-context@v3
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBECONFIG }}
@@ -56,7 +58,7 @@ jobs:
       - name: Upload a Build Artifact
         if: always() && steps.prepare-artifact.outcome == 'success'
         continue-on-error: true
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: pull-request-payload
           path: pull_request_payload.json
