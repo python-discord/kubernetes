@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: pixels-modsite
-          image: ghcr.io/python-discord/modsite:latest
+          image: ghcr.io/python-discord/pixels-modsite:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
