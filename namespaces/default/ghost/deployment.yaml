@@ -20,13 +20,17 @@ spec:
         runAsNonRoot: true
       containers:
         - name: ghost
-          image: ghost:4.21
+          image: ghost:5.38-alpine
           imagePullPolicy: Always
           ports:
             - containerPort: 2368
           env:
             - name: url
               value: https://blog.pythondiscord.com
+            - name: database__client
+              value: sqlite3
+            - name: database__connection__filename
+              value: /var/lib/ghost/content/data/ghost.db
           volumeMounts:
             - mountPath: /var/lib/ghost/content
               name: ghost-data
