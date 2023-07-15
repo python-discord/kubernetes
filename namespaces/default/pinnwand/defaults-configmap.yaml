@@ -9,7 +9,7 @@ data:
 
     default_selected_lexer = "python"
     # List of lexers to pin to the top of the dropdown list
-    preferred_lexers = ["python", "pytb", "pycon", "text", "markdown", "restructuredtext", "sql"]
+    preferred_lexers = ["python", "autodetect", "pytb", "pycon", "text", "markdown", "restructuredtext", "sql"]
 
     page_list = ["about", "removal"]
     footer = 'View <a href="//github.com/supakeen/pinnwand" target="_BLANK">source code</a>, <a href="/removal">removal</a> information, or read the <a href="/about">about</a> page.'

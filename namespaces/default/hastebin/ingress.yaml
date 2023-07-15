@@ -12,7 +12,7 @@ spec:
       - "*.pythondiscord.com"
     secretName: pythondiscord.com-tls
   rules:
-  - host: paste.pythondiscord.com
+  - host: paste-old.pythondiscord.com
     http:
       paths:
       - path: /
