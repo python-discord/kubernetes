@@ -12,6 +12,18 @@ spec:
       labels:
         app: snekbox-forms
     spec:
+      initContainers:
+        - name: init-service
+          image: busybox:latest
+          command: ["/bin/sh", "-c"]
+          args: 
+          - >
+            wget https://image1.com -O /tmp/img1.png
+            wget https://image2.com -O /tmp/img2.png
+            wget https://image3.com -O /tmp/img3.png
+          volumeMounts:
+            - name: snekbox-forms-images
+              mountPath: /tmp/
       containers:
         - name: snekbox-forms
           image: ghcr.io/python-discord/snekbox:latest
@@ -23,6 +35,8 @@ spec:
           volumeMounts:
             - name: snekbox-forms-user-base-volume
               mountPath: /snekbox/user_base
+            - name: snekbox-forms-images
+              mountPath: /snekbox/forms-images
           lifecycle:
             postStart:
               exec:
@@ -37,4 +51,6 @@ spec:
                     opencv-python-headless==4.8.0.74
       volumes:
         - name: snekbox-forms-user-base-volume
+          emptyDir: {}
+        - name: snekbox-forms-images
           emptyDir: {}
