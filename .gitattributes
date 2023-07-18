@@ -1,2 +1,3 @@
 * text=auto
 secrets.yaml filter=git-crypt diff=git-crypt
+ghcr-pull-secrets.yaml filter=git-crypt diff=git-crypt

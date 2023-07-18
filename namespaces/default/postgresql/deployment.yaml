@@ -32,7 +32,7 @@ spec:
             - name: postgres-config
               mountPath: /etc/postgresql
             - name: dshm
-              mountPath: /dev/shm        
+              mountPath: /dev/shm
       volumes:
         - name: postgres-data
           persistentVolumeClaim:
