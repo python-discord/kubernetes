@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: logcord-config-env
-data:
-  LOGCORD_HOST: "https://logcord.pythondiscord.com"
