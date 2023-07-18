@@ -5,7 +5,7 @@ potential_manifests = []
 
 for path, directories, files in os.walk("."):
     for file in files:
-        if file.endswith(".yaml"):
+        if file.endswith(".yaml") and file not in ("secrets.yaml", "ghcr-pull-secrets.yaml"):
             potential_manifests.append(os.path.join(path, file))
 
 likely_manifests = []
