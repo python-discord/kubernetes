@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: policy-bot
-          image: palantirtechnologies/policy-bot:snapshot
+          image: palantirtechnologies/policy-bot:latest
           imagePullPolicy: Always
           resources:
             requests:
