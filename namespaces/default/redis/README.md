@@ -22,3 +22,13 @@ It will expose port `6379` to connect to Redis.
 
 ## Service
 A service called `redis` will be created to give the deployment a cluster local DNS record of `redis.default.svc.cluster.local`.
+
+## Secrets
+
+Redis requires a `redis-credentials` secret with the following entries:
+
+| Environment    | Description                           |
+|----------------|---------------------------------------|
+| REDIS_HOST     | The host redis is running on          |
+| REDIS_PASSWORD | The password to connect to redis with |
+| REDIS_PORT     | The port redis is listening on        |

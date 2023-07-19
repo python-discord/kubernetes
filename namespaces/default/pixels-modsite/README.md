@@ -6,4 +6,8 @@ This mod site will give Discord mods easy access to moderation actions for the p
 
 ## Secret
 
-It requires a `pixels-modsite-env` secret with the values defined [here](https://github.com/python-discord/pixels-modsite#environment-variables).
+It requires a `pixels-modsite-env` secret with the following entries:
+
+| Environment       | Description                                                     |
+|-------------------|-----------------------------------------------------------------|
+| DISCORD_BOT_TOKEN | The Discord bot token to use to check roles of users logging in |

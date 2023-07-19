@@ -5,8 +5,11 @@ This folder contains the configuration for Python Discord's MongoDB instance.
 A 10Gi volume is provisioned on the Linode Block Storage (Retain) storage class.
 
 ## Secrets
+| Key                          | Value                      | Description                     |
+| ---------------------------- | -------------------------- | ------------------------------- |
+| `MONGO_INITDB_ROOT_USERNAME` | `pythondiscord`            | Username of root user           |
+| `MONGO_INITDB_ROOT_PASSWORD` | Root password for database | Password for the root user      |
 
-Requires one secret called `mongo-credentials` with the contents found at [this file](/secrets/mongo-credentials.md).
 
 ## Deployment
 The deployment will pull the `mongo:latest` image from DockerHub.

@@ -1,11 +1,4 @@
 # Exporter for taking statistics on our PostgreSQL instance
-#
-# Required secrets:
-#   - postgres-exporter-env
-#
-#       Should contain environment variables listed at https://github.com/wrouesnel/postgres_exporter but most
-#       notably should contain DATA_SOURCE_NAME containing a postgresql connection URI.
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:

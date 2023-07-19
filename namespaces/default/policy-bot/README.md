@@ -9,27 +9,16 @@ Follow the instructions in the [repository](https://github.com/palantir/policy-b
 
 ## Secrets
 
-There is a secret required containing the necessary secret configuration parameters for interacting with GitHub and user session data.
+This app requires a `policy-bot-defaults` secret with the following entries:
 
-Since this has a PEM key inside it is advised to use a file based manifest while creating the secret for this application.
+| Environment                                      | Description                                                           |
+|--------------------------------------------------|-----------------------------------------------------------------------|
+| GITHUB_APP_PRIVATE_KEY                           | Contents of the PEM certificate downloadable from the GitHub App page |
+| GITHUB_APP_WEBHOOK_SECRET                        | Webhook secret from GitHub App Page                                   |
+| GITHUB_OAUTH_CLIENT_SECRET                       | OAuth 2 client secret from Github App page                            |
+| POLICYBOT_OPTIONS_DO_NOT_LOAD_COMMIT_PUSHED_DATE | Set to True to not use deprecated commit_pushed_date from Github API  |
+| POLICYBOT_SESSIONS_KEY                           | Random characters for signing user sessions                           |
 
-A template can be found below:
-```yaml
-apiVersion: v1
-kind: Secret
-type: Opaque
-metadata:
-  name: policy-bot-defaults
-stringData:
-  GITHUB_APP_WEBHOOK_SECRET: "Webhook secret from GitHub App Page"
-  GITHUB_OAUTH_CLIENT_SECRET: "OAuth 2 client secret from Github App page"
-  POLICYBOT_SESSIONS_KEY: "Random characters for signing user sessions"
-  GITHUB_APP_PRIVATE_KEY: |
-    # Contents of the PEM certificate downloadable from the GitHub App page
-```
-
-Fill in the values and save to a manifest file, then run `kubectl apply -f <created manifest>` to create it. **Delete the file afterwards**.
-
-Once you've initialised this secret run `kubectl apply -f .` inside this directory to apply the rest of the configuration.
+Run `kubectl apply -f .` inside this directory to apply the the configuration.
 
 Access the running application over [policy-bot.pythondiscord.com]([https://policy-bot.pythondiscord.com/])!

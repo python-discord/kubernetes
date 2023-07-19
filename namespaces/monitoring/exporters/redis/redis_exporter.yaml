@@ -1,11 +1,4 @@
 # Exporter for taking statistics on our Redis instance
-#
-# Required secrets:
-#   - redis-exporter-env
-#
-#       Variables are at https://github.com/oliver006/redis_exporter#command-line-flags
-#       but most notably REDIS_ADDR and REDIS_PASSWORD
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
