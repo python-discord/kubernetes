@@ -35,7 +35,7 @@ spec:
           securityContext:
             readOnlyRootFilesystem: true
       imagePullSecrets:
-        - name: ghcr-credentials
+        - name: ghcr-pull-secret
       securityContext:
         fsGroup: 2000
         runAsUser: 1000
