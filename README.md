@@ -2,24 +2,16 @@
 Configuration and documentation for Python Discord's Kubernetes setup!
 
 
-# How to create secrets
-Many of these deployments require you to create secret environments. These are not in this repository, for security reasons, so you need to manually create them.
+## Secrets
+We use [git-crypt](https://www.agwa.name/projects/git-crypt/) ([Github](https://github.com/AGWA/git-crypt))to secure secrets. Using this means we can commit secrets to change control, without the secrets being leaked.
 
-The easiest way to do this is to use `kubectl create secret`. For example:
+The [.gitattributes](.gitattributes) is used to determine which files to encrypt. See [git-crypt](https://www.agwa.name/projects/git-crypt/) documentation for more information.
 
-```shell script
-kubectl create secret generic new-secret-env \
-  --from-literal=MY_FAVORITE_THING=lemons \
-  --from-literal=SUPER_LAME_DOG=snoopy
-```
+To work with our secrets, you must have your GPG key added by a member of the devops team. Once that is done, you can use git-crypt as documented.
 
-It's also possible to create a secret manifest file, but **make sure not to commit it!**
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: my-secret
-stringData:
-  KEY: "value"
-```
+### git-crypt tl;dr
+- Get/build a git-crypt binary from [Github](https://github.com/AGWA/git-crypt)
+- Rename the binary to `git-crypt`
+- Add binary to your PATH
+- Run `git-crypt unlock` from this project's root directory.
+See [git-crypt](https://www.agwa.name/projects/git-crypt/) documentation for more information.
