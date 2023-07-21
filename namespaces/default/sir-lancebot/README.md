@@ -9,27 +9,22 @@ Hereafter, thus t'was with him that we hath forged our path.
 ```
 
 ## Secrets
-This deployment expects a number of secrets and environment variables to exist in a secret called `sir-lancebot-env`.
+This deployment expects a number of secrets and environment variables to exist in a secret called `sir-lancebot-env` shown below. The bot also relies on redis credentials being available in a secret named `redis-credentials`
 
 
-| Environment           | Description                               |
-|-----------------------|-------------------------------------------|
-| BOT_SENTRY_DSN        | The DSN for the Sentry project.           |
-| BOT_TOKEN             | The bot token to run the bot on.          |
-| BOT_DEBUG             | Should the bot start in DEBUG mode?       |
-| REDIS_PASSWORD        | The password for the Redis service.       |
-| REDIS_HOST            | The hostname for the Redis service.       |
-| REDIS_PORT            | The port that the Redis service runs on.  |
-| AOC_JOIN_CODE         | Public leaderboard join code for AoC.     |
-| AOC_JOIN_STAFF_CODE   | Staff leaderboard join code for AoC.      |
-| AOC_SESSION_COOKIE    | Advent of Code session cookie.            |
-| GITHUB_TOKEN          | GitHub access token, for Hacktoberstats.  |
-| TMDB_TOKEN            | Token for TMBD. Used for scarymovie.py.   |
-| TMDB_API_KEY          | API key for TMBD.                         |
-| IGDB_API_KEY          | API key for IGDB - used to find games.    |
-| OMDB_API_KEY          | API key for OMDB - used with snake cog.   |
-| WOLFRAM_API_KEY       | API key for Wolfram Alpha.                |
-| GIPHY_TOKEN           | API key for Giphy.                        |
-| YOUTUBE_API_KEY       | API key for YouTube.                      |
-| NASA_API_KEY          | API key for NASA.                         |
+| Environment               | Description                              |
+|---------------------------|------------------------------------------|
+| BOT_SENTRY_DSN            | The DSN for the Sentry project.          |
+| CLIENT_DEBUG              | Should the bot start in DEBUG mode?      |
+| CLIENT_TOKEN              | The bot token to run the bot on.         |
+| LATEX_API_URL             | The URl tha the latex API is served from |
+| TOKENS_GIPHY              | API key for Giphy.                       |
+| TOKENS_GITHUB             | GitHub access token, for Hacktoberstats. |
+| TOKENS_IGDB_CLIENT_ID     | Client ID IGDB - used to find games.     |
+| TOKENS_IGDB_CLIENT_SECRET | Client secret IGDB - used to find games. |
+| TOKENS_NASA               | API key for NASA.                        |
+| TOKENS_TMDB               | Token for TMBD. Used for scarymovie.py.  |
+| TOKENS_UNSPLASH           | Token for unsplash.                      |
+| TOKENS_YOUTUBE            | API key for YouTube.                     |
+| WOLFRAM_KEY               | API key for Wolfram Alpha.               |
 

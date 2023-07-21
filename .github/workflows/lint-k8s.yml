@@ -19,7 +19,7 @@ jobs:
       - name: Get list of files
         run: |
           echo "manifests<<EOF" >> $GITHUB_OUTPUT
-          python scripts/find_manifests.py >> $GITHUB_OUTPUT
+          python scripts/lint_manifests.py find >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
         id: manifest-files
 

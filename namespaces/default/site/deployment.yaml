@@ -55,8 +55,6 @@ spec:
           envFrom:
             - secretRef:
                 name: site-env
-            - secretRef:
-                name: sentry-env
           volumeMounts:
             # Used for `gunicorn` worker heartbeats as well as the Prometheus
             # client library's multiprocessing mode.

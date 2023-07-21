@@ -9,4 +9,9 @@ The hope with this project is that we can inspect what topics get asked about of
 
 ## Secret
 
-It requires a `patsy-env` secret with the values defined [here](https://git.pydis.com/patsy#env-file).
+It requires a `patsy-env` secret with the following
+
+| Key            | Description                                                  |
+| -------------- | ------------------------------------------------------------ |
+| `DATABASE_URL` | An asyncpg connection string to the postgres database        |
+| `STATE_SECRET` | A long random string, used to lock down endpoints with auth. |

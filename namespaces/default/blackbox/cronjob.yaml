@@ -14,15 +14,7 @@ spec:
             imagePullPolicy: Always
             envFrom:
               - secretRef:
-                  name: postgres-env
-              - secretRef:
-                  name: redis-credentials
-              - secretRef:
-                  name: mongo-credentials
-              - secretRef:
-                  name: s3-credentials
-              - secretRef:
-                  name: discord-webhooks
+                  name: blackbox-env
             env:
               - name: BLACKBOX_CONFIG_PATH
                 value: "/blackbox/config_file/blackbox.yaml"

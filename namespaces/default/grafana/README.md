@@ -2,13 +2,10 @@
 
 This folder contains the manifests for deploying our Grafana instance, the service we use to query our data.
 
-To deploy it create a secret with all the secret variables like so:
+This deployment expects a number of secrets and environment variables to exist in a secret called `grafana-secret-env`.
 
-```
-kubectl create secret generic grafana-secret-env \
-  --from-literal=GF_SECURITY_ADMIN_PASSWORD=<admin password> \
-  --from-literal=GF_AUTH_GITHUB_CLIENT_ID=<github client id> \
-  --from-literal=GF_AUTH_GITHUB_CLIENT_SECRET=<github client secret>
-```
-
-Then, apply the rest of the manifests by running `kubectl apply -f .` in this folder.
+| Environment                  | Description                                         |
+|------------------------------|-----------------------------------------------------|
+| GF_AUTH_GITHUB_CLIENT_ID     | The client ID of the Github app to use for auth     |
+| GF_AUTH_GITHUB_CLIENT_SECRET | The client secret of the Github app to use for auth |
+| GF_SECURITY_ADMIN_PASSWORD   | The admin password the the grafana admin console    |

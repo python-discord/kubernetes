@@ -17,10 +17,13 @@ spec:
       containers:
         - name: redis
           image: redis:latest
-          command: [ "redis-server", "/config/redis.conf"]
+          command: 
+          - redis-server
+          args:
+          - /config/redis.conf
+          - --requirepass
+          - $(REDIS_PASSWORD)
           imagePullPolicy: Always
-
-          # Borrowed from https://github.com/kubernetes/examples/blob/master/guestbook/redis-master-deployment.yaml
           resources:
             requests:
               cpu: 50m
@@ -28,9 +31,11 @@ spec:
             limits:
               cpu: 100m
               memory: 150Mi
-
           ports:
-            - containerPort: 6379        # Redis default port
+            - containerPort: 6379
+          envFrom:
+            - secretRef:
+                name: redis-credentials
           volumeMounts:
             - name: redis-data-volume
               mountPath: /data           # Must match the dir in the redis.conf

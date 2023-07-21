@@ -1,11 +1,4 @@
 # Exporter for taking statistics on our PostgreSQL instance
-#
-# Required secrets:
-#   - postgres-exporter-env
-#
-#       Should contain environment variables listed at https://github.com/wrouesnel/postgres_exporter but most
-#       notably should contain DATA_SOURCE_NAME containing a postgresql connection URI.
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,15 +27,26 @@ spec:
               memory: 50Mi
           ports:
             - containerPort: 9187
+          env:
+            - name: PG_EXPORTER_EXTEND_QUERY_PATH
+              value: /opt/python-discord/queries/queries.yaml
           envFrom:
             - secretRef:
                 name: postgres-exporter-env
           securityContext:
             readOnlyRootFilesystem: true
+          volumeMounts:
+          - mountPath: /opt/python-discord/queries
+            name: queries
       securityContext:
         fsGroup: 2000
         runAsUser: 1000
         runAsNonRoot: true
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: postgres-exporter-queries
+        name: queries
 ---
 apiVersion: v1
 kind: Service

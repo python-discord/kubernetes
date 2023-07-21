@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: grafana-image-renderer
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: grafana-image-renderer

@@ -31,8 +31,6 @@ spec:
         - secretRef:
             name: bot-env
         - secretRef:
-            name: sentry-env
-        - secretRef:
             name: redis-credentials
         volumeMounts:
         - mountPath: /bot/logs
