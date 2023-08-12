@@ -12,6 +12,20 @@ spec:
       labels:
         app: snekbox-forms
     spec:
+      initContainers:
+        - name: init-service
+          image: busybox:latest
+          command: ["/bin/sh", "-c"]
+          args:
+          - >
+            wget https://url.to.file.com/redacted -O /tmp/cj-inputs/redacted.png;
+            wget https://raw.githubusercontent.com/python-discord/snekbox/main/config/snekbox.cfg -O /tmp/config/snekbox.cfg;
+            echo -e 'mount {\n src:"/snekbox/cj-inputs"\n dst:"/cj-inputs"\n is_bind: true\n rw: false}' >> /tmp/config/snekbox.cfg;
+          volumeMounts:
+            - name: snekbox-cj-inputs
+              mountPath: /tmp/cj-inputs/
+            - name: snekbox-forms-config
+              mountPath: /tmp/config/
       containers:
         - name: snekbox-forms
           image: ghcr.io/python-discord/snekbox:latest
@@ -23,6 +37,11 @@ spec:
           volumeMounts:
             - name: snekbox-forms-user-base-volume
               mountPath: /snekbox/user_base
+            - name: snekbox-cj-inputs
+              mountPath: /snekbox/cj-inputs
+            - name: snekbox-forms-config
+              mountPath: /snekbox/config/snekbox.cfg
+              subPath: snekbox.cfg
           lifecycle:
             postStart:
               exec:
@@ -37,4 +56,8 @@ spec:
                     opencv-python-headless==4.8.0.74
       volumes:
         - name: snekbox-forms-user-base-volume
+          emptyDir: {}
+        - name: snekbox-cj-inputs
+          emptyDir: {}
+        - name: snekbox-forms-config
           emptyDir: {}
