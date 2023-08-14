@@ -1,6 +1,9 @@
+# Archival notice
+The kubernetes repository has been merged into the [Python Discord infra repository](https://github.com/python-discord/infra/) (mostly) under the `kubernetes` folder.
+This was done to consolidate Python Discord's infrastructure configuration and documentation in one place.
+
 # Kubernetes
 Configuration and documentation for Python Discord's Kubernetes setup!
-
 
 ## Secrets
 We use [git-crypt](https://www.agwa.name/projects/git-crypt/) ([Github](https://github.com/AGWA/git-crypt))to secure secrets. Using this means we can commit secrets to change control, without the secrets being leaked.
